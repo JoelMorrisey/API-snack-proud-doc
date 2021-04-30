@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-heroku": "cd ../ && git subtree push --prefix App origin heroku",
+    "build-heroku": "cd ../ && git subtree push --prefix app origin heroku",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
