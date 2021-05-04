@@ -1,0 +1,1766 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Snack Proud API",
+    "description": "This is an API created for the Snack Proud web application only.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://snack-proud.herokuapp.com",
+      "description": "Internet facing testing version of the API."
+    },
+    {
+      "url": "http://localhost:5000",
+      "description": "Local testing version of the API."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Buyer - Box",
+      "description": "Box APIs for buyers"
+    },
+    {
+      "name": "Buyer - Payment",
+      "description": "Payment APIs for Buyers"
+    },
+    {
+      "name": "Seller - Registration",
+      "description": "Account creation APIs"
+    },
+    {
+      "name": "Seller - Dashboard",
+      "description": "Dashboard APIs for seller"
+    },
+    {
+      "name": "Seller - Box",
+      "description": "Box APIs for seller"
+    },
+    {
+      "name": "Seller - Product",
+      "description": "Product APIs for seller"
+    },
+    {
+      "name": "Seller - Buy Product",
+      "description": "APIs to buy products to add to a box"
+    }
+  ],
+  "paths": {
+    "/buyer/box/{box_id}": {
+      "get": {
+        "tags": [
+          "Buyer - Box"
+        ],
+        "summary": "Get a box for a buyer",
+        "description": "Get box details including the _id (this is just the box_ID), name, and all the active products inside the box.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "The id of the box to retrieve.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The box information with all products contained inside the box",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                },
+                "example": {
+                  "_id": "5ffd695b1c9940890281f1aa",
+                  "name": "Test box 1",
+                  "products": [
+                    {
+                      "_id": "6036316c91c3a71f255544ad",
+                      "price": 425,
+                      "available": 10000,
+                      "name": "Choc Not Choc, Mint Brownie ball",
+                      "description": "Snack Proud raw chocolate truffles are very indulgent and delicious and taste like an after-dinner mint brownie.\nThere are chocolate chunks and coconut chips in the middle. Safely portion-controlled so you can keep one in their handbag to have between meetings.",
+                      "variant": "chocolate",
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610438688/Snack-Proud-Choc-Mint-Truffle.png",
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": true,
+                        "nut_free": false,
+                        "dairy_free": true
+                      }
+                    },
+                    {
+                      "_id": "6036394306a138204d1b79be",
+                      "price": 655,
+                      "available": 1000,
+                      "name": "Googys, Collagen Protein Bar",
+                      "description": "Enjoy the new Googys Collagen Bar, with low in carbohydrates, high in protein & good fats",
+                      "variant": "Mixed Berry",
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1611653365/googys-collagen-bar-mixed-berry_h2jcml.png",
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": false,
+                        "nut_free": false,
+                        "dairy_free": true
+                      }
+                    },
+                    {
+                      "_id": "603639f3d9ea062581df00b3",
+                      "price": 180,
+                      "available": 13,
+                      "name": "Snack-Proud-Edamame",
+                      "description": "This is a great snack to munch on like peanuts or a yummy topping to salads too for extra crunch.",
+                      "variant": "Choc Raspberry",
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1611203187/Snack-Proud-Edamame.png",
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": true,
+                        "nut_free": true,
+                        "dairy_free": true
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment/intent/": {
+      "post": {
+        "tags": [
+          "Buyer - Payment"
+        ],
+        "summary": "Make an intent to purchase products using Stripe",
+        "description": "This api will return a client_secret for a payment_intent (This is a Stripe connect feature). \n\n For more information please go to: \n\n <a>https://stripe.com/docs/connect/collect-then-transfer-guide</a>. \n\n <b>NOTE:</b> This token is only valid 24 hours after creation. \n\n <b>The test publishable api key required is:</b> \n\n pk_test_51HfgNBHHvC6AAOnBFVXNbh6fRHjkQGpDdJIyaWrBQndSa8tpaol8I2RXrerNIM6AHT1pDXJIoNL0M6WjcSe4Tzap00ncgMYOt1  ",
+        "requestBody": {
+          "description": "A cart object of all the items to buy",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "working",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/pending/{pending_account_id}": {
+      "get": {
+        "tags": [
+          "Seller - Registration"
+        ],
+        "summary": "Get prefilled account information from code",
+        "description": "Create a stripe account for a individual with the details given",
+        "parameters": [
+          {
+            "name": "pending_account_id",
+            "in": "path",
+            "description": "The pending account id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stripe account has successfully been created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                },
+                "example": {
+                  "user": {
+                    "address": {
+                      "address_line1": "Some address",
+                      "address_line2": "12",
+                      "country": "Australia",
+                      "city": "Sydney",
+                      "state": "NSW",
+                      "zip": "2222"
+                    },
+                    "account_type": "individual",
+                    "company_description": "Some description",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "ABN": "000000000"
+                  },
+                  "delivery": {
+                    "address": {
+                      "address_line1": "Some address 2",
+                      "address_line2": "13",
+                      "country": "Australia",
+                      "city": "Sydney",
+                      "state": "NSW",
+                      "zip": "2222"
+                    },
+                    "name": "John doe",
+                    "phone": "000000000",
+                    "email": "example@example.com"
+                  },
+                  "preset_box_ID": "5ffc1cf7820e93259f6a4d97"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/account/register/individual": {
+      "post": {
+        "tags": [
+          "Seller - Registration"
+        ],
+        "summary": "Set up account",
+        "description": "Create a stripe account for a individual with the details given",
+        "requestBody": {
+          "description": "Data to create Stripe account with.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/body_1"
+              },
+              "encoding": {
+                "personal_identification": {
+                  "contentType": "image/png, image/jpeg, application/pdf",
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account has been successfully created."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/dashboard/overview": {
+      "get": {
+        "tags": [
+          "Seller - Dashboard"
+        ],
+        "summary": "Get stats for dashboard",
+        "description": "Get all the stats required for the dashboard.",
+        "parameters": [
+          {
+            "name": "date_enum",
+            "in": "query",
+            "description": "From what time to compute stats from. (defualt value when not provided is week)",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "week",
+                "day"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stats for the dashboard of the authenticated account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/dashboard/leaderboard": {
+      "get": {
+        "tags": [
+          "Seller - Dashboard"
+        ],
+        "summary": "Get leaderboard",
+        "description": "Get the leaderboard for the dashboard.",
+        "parameters": [
+          {
+            "name": "date_enum",
+            "in": "query",
+            "description": "From what time to compute stats from. (defualt value when not provided is week)",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "week",
+                "day"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of the most popular iems over all boxes in decending order.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_4"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/boxes": {
+      "get": {
+        "tags": [
+          "Seller - Box"
+        ],
+        "summary": "Get all owned boxes",
+        "description": "Get all boxes owned by the user",
+        "parameters": [
+          {
+            "name": "stats",
+            "in": "query",
+            "description": "get box stats?",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "date_enum",
+            "in": "query",
+            "description": "From what time to compute stats from. (defualt value when not provided is week)",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "week",
+                "day"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All boxes the user owns",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/box_details_seller"
+                      },
+                      {
+                        "$ref": "#/components/schemas/box_stats_seller"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/boxes/{box_id}": {
+      "get": {
+        "tags": [
+          "Seller - Box"
+        ],
+        "summary": "Get a box's details",
+        "description": "Get the details of a box with the given ID if box is owned.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "The id of the box to get details of",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The details of a specific box",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/box_details_seller"
+                },
+                "example": {
+                  "_id": "60863f82c149f8772db5b451",
+                  "name": "test box",
+                  "new": false
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Seller - Box"
+        ],
+        "summary": "update box details",
+        "description": "update a given boxes details",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "The id of the box to update",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "All boxes the user owns",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_2"
+              },
+              "example": {
+                "name": "box 1",
+                "new": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Box was updated successfully"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/boxes/{box_id}/stats": {
+      "get": {
+        "tags": [
+          "Seller - Box"
+        ],
+        "summary": "Get stats of a given box",
+        "description": "Get the stats of a given box.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "The box id to get stats for",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_enum",
+            "in": "query",
+            "description": "From what time to compute stats from. (defualt value when not provided is week)",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "week",
+                "day"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The boxes stats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/box_specific_stats_seller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/seller/boxes/{box_id}/doneSetup": {
+      "patch": {
+        "tags": [
+          "Seller - Box"
+        ],
+        "summary": "Set box as setup",
+        "description": "Sets the new flag to false. This is just a more light weight version of update to the box api.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "The id of the box to set as setup",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The boxes new flag has been set to false"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/boxes/{box_id}/products": {
+      "get": {
+        "tags": [
+          "Seller - Product"
+        ],
+        "summary": "Get products inside box",
+        "description": "Get all customer products inside a given box",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "The box id to get products from",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_enum",
+            "in": "query",
+            "description": "From what time to compute stats from. (defualt value when not provided is week)",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "week",
+                "day"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of all the products inside the box",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/product_details_for_buyer_in_box"
+                      }
+                    ]
+                  }
+                },
+                "example": {
+                  "products": [
+                    {
+                      "_id": "60864477c149f8772db452",
+                      "name": "Choc Not Choc, Mint Brownie ball",
+                      "variant": "chocolate",
+                      "description": "Snack Proud raw chocolate truffles are very indulgent and delicious and taste like an after dinner mint brownie.\\nThere are chocolate chunks and coconut chips in the middle. Safely portion-controlled so you can keep one in their handbag to have between meetings.",
+                      "active": true,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610438688/Snack-Proud-Choc-Mint-Truffle.png",
+                      "price": 4.25,
+                      "avaliable": 10,
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": false,
+                        "nut_free": true,
+                        "dairy_free": true
+                      },
+                      "rrp": 4.25,
+                      "low_rrp": 4.25,
+                      "high_rrp": 5.9,
+                      "sold": 0,
+                      "request_count": 0
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/seller/products": {
+      "patch": {
+        "tags": [
+          "Seller - Product"
+        ],
+        "summary": "Update many customer products",
+        "description": "Update one or more products. For preformance reasons it is preferable if only items that need to be updated are passed here.",
+        "requestBody": {
+          "description": "List of products to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_3"
+              },
+              "example": {
+                "_id": "6057f3af7f00fc0015d8a59c",
+                "available": 11,
+                "price": 6.55,
+                "active": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A list of errors if any. If list is empty all completed sucessfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200_5"
+                  }
+                },
+                "example": [
+                  {
+                    "message": "User is not autherized to access resource"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/seller/snackproud/products/{box_id}": {
+      "get": {
+        "tags": [
+          "Seller - Buy Product"
+        ],
+        "summary": "Get products avaliable to restock with.",
+        "description": "Get list of products that seller can buy.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "id of the box this list is relivant to.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON object with containing a list of item a seller can buy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/products_to_buy_seller"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/snackproud/MonthlyRefill/{box_id}": {
+      "get": {
+        "tags": [
+          "Seller - Buy Product"
+        ],
+        "summary": "Get monthly refills.",
+        "description": "Get list of monthly refills that seller can buy.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "id of the box this list is relivant to.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON object with containing a list of item a seller can buy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/monthly_refill_to_buy_seller"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/snackproud/products/order": {
+      "post": {
+        "tags": [
+          "Seller - Buy Product"
+        ],
+        "summary": "Create order for refill products.",
+        "description": "Create an order to refill boxes with refill products.",
+        "responses": {
+          "200": {
+            "description": "The order was successfully processed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/refill_order"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user_address": {
+        "type": "object",
+        "properties": {
+          "address_line1": {
+            "type": "string",
+            "description": "There delivery street address"
+          },
+          "address_line2": {
+            "type": "string",
+            "description": "Address line 2 (e.g., apartment, suite, unit, or building)."
+          },
+          "country": {
+            "type": "string",
+            "description": "The delivery country"
+          },
+          "city": {
+            "type": "string",
+            "description": "The delivery city"
+          },
+          "state": {
+            "type": "string",
+            "description": "The delivery state"
+          },
+          "zip": {
+            "type": "string",
+            "description": "The delivery zip code"
+          }
+        }
+      },
+      "delivery_address": {
+        "type": "object",
+        "properties": {
+          "address_line1": {
+            "type": "string",
+            "description": "There delivery street address"
+          },
+          "address_line2": {
+            "type": "string",
+            "description": "Address line 2 (e.g., apartment, suite, unit, or building)."
+          },
+          "country": {
+            "type": "string",
+            "description": "The delivery country"
+          },
+          "city": {
+            "type": "string",
+            "description": "The delivery city"
+          },
+          "state": {
+            "type": "string",
+            "description": "The delivery state"
+          },
+          "zip": {
+            "type": "string",
+            "description": "The delivery zip code"
+          }
+        }
+      },
+      "base_product": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The id of the product."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product."
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the product."
+          },
+          "variant": {
+            "type": "string",
+            "description": "The variant of the snack."
+          },
+          "price": {
+            "type": "number",
+            "description": "Cost of the product (in cents)."
+          },
+          "image_url": {
+            "type": "string",
+            "description": "url of the image on the CDN"
+          },
+          "nutrition_information": {
+            "$ref": "#/components/schemas/base_product_nutrition_information"
+          }
+        }
+      },
+      "refill_order": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/refill_order_inner"
+        }
+      },
+      "cart_for_buyer": {
+        "type": "object",
+        "properties": {
+          "cart": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/cart_for_buyer_cart"
+            }
+          }
+        },
+        "description": "List of items intended to buy"
+      },
+      "payment_intent_for_buyer": {
+        "type": "object",
+        "properties": {
+          "client_secret": {
+            "type": "string",
+            "description": "The client secret of this PaymentIntent. Used for client-side retrieval using a publishable key.\n\nThe client secret can be used to complete a payment from your frontend."
+          },
+          "price": {
+            "type": "number",
+            "description": "Total for the cart computed at the back-end (in cents)."
+          }
+        },
+        "description": "Required Stripe information to complete a purchase for a buyer."
+      },
+      "product_for_buyer": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_product"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "avaliable": {
+                "type": "integer",
+                "description": "Number of product avaliable."
+              }
+            }
+          }
+        ]
+      },
+      "box_details_for_buyer": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "box_id"
+          },
+          "name": {
+            "type": "string",
+            "description": "name of the box"
+          }
+        }
+      },
+      "box_details_seller": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Id of the box requested"
+          },
+          "name": {
+            "type": "string",
+            "description": "name of the box"
+          },
+          "new": {
+            "type": "boolean",
+            "description": "Is the box new"
+          },
+          "topping_up": {
+            "type": "boolean",
+            "description": "Is the box being topped up"
+          }
+        },
+        "description": "Basic box details"
+      },
+      "box_stats_seller": {
+        "type": "object",
+        "properties": {
+          "last_updated": {
+            "type": "string",
+            "description": "when the box was last updated"
+          },
+          "most_popular": {
+            "type": "string",
+            "description": "most popular snack"
+          },
+          "sold": {
+            "type": "integer"
+          },
+          "profit": {
+            "type": "number"
+          },
+          "available": {
+            "type": "integer"
+          }
+        }
+      },
+      "box_specific_stats_seller": {
+        "type": "object",
+        "properties": {
+          "last_updated": {
+            "type": "string",
+            "description": "Date the box was last updated."
+          },
+          "total_sold_since_update": {
+            "type": "integer",
+            "description": "Total snacks sold since box was last updated."
+          },
+          "total_profit_since_update": {
+            "type": "number",
+            "description": "Total profit since box was last updated."
+          },
+          "sold": {
+            "type": "integer",
+            "description": "Total number of snacks sold since date_enum."
+          },
+          "profit": {
+            "type": "number",
+            "description": "Total profit since date_enum."
+          },
+          "available": {
+            "type": "integer",
+            "description": "Total number of product avaliable."
+          },
+          "has_made_sale": {
+            "type": "boolean",
+            "description": "Has the box ever made a sale."
+          }
+        }
+      },
+      "product_details_for_buyer_in_box": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "the product ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product"
+          },
+          "variant": {
+            "type": "string",
+            "description": "The product variant type"
+          },
+          "description": {
+            "type": "string",
+            "description": "The product description"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "is the product active"
+          },
+          "image_url": {
+            "type": "string",
+            "description": "The image url of the product"
+          },
+          "price": {
+            "type": "number",
+            "description": "The current selling price for the product"
+          },
+          "available": {
+            "type": "number",
+            "description": "Number of the product avaliable"
+          },
+          "nutrition_information": {
+            "$ref": "#/components/schemas/product_details_for_buyer_in_box_nutrition_information"
+          },
+          "rrp": {
+            "type": "number",
+            "description": "The default price for a product"
+          },
+          "low_rrp": {
+            "type": "number",
+            "description": "lowest recommended sell price"
+          },
+          "high_rrp": {
+            "type": "number",
+            "description": "highest recommended sell price"
+          },
+          "sold": {
+            "type": "integer",
+            "description": "number of this product sold"
+          },
+          "request_count": {
+            "type": "integer",
+            "description": "number of requests for an item. This is currently a placeholder for furutre development and should be ignored."
+          }
+        }
+      },
+      "monthly_refill_to_buy_seller": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/base_product"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "preset_products": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "id of the preset product"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "description": "Number of this product provided"
+                        }
+                      },
+                      "description": "All products that are included in this item"
+                    },
+                    "total_quantity": {
+                      "type": "integer",
+                      "description": "Total number of products to be added by this item if bought"
+                    },
+                    "on_hand": {
+                      "type": "integer",
+                      "description": "Total number of snacks owned inside this item."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of product. This is not currently relivant for this stage."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "products_to_buy_seller": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/base_product"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "preset_products": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "id of the preset product"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "description": "Number of this product provided"
+                        }
+                      },
+                      "description": "All products that are included in this item"
+                    },
+                    "total_quantity": {
+                      "type": "integer",
+                      "description": "Total number of products to be added by this item if bought"
+                    },
+                    "on_hand": {
+                      "type": "integer",
+                      "description": "Total number of snacks owned inside this item."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "box_refill_order_data": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Id of the order"
+          },
+          "date": {
+            "type": "string",
+            "description": "Date the order was made in ISO date format."
+          },
+          "invoice_num": {
+            "type": "string",
+            "description": "The invoice number."
+          },
+          "num_of_products": {
+            "type": "integer",
+            "description": "number of products bought"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/box_refill_order_data_products"
+            }
+          }
+        }
+      },
+      "delivery_data": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/delivery_data_address"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Any custom instructions the user has delivery."
+          },
+          "name": {
+            "type": "string",
+            "description": "person to deliver it to name"
+          },
+          "phone": {
+            "type": "string",
+            "description": "contact delivery phone number"
+          },
+          "email": {
+            "type": "string",
+            "description": "delivery contact/invoice email"
+          }
+        }
+      },
+      "inline_response_200": {
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/product_for_buyer"
+            }
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/box_details_for_buyer"
+          }
+        ]
+      },
+      "body": {
+        "type": "object",
+        "example": {
+          "cart": [
+            {
+              "_id": "6036316c91c3a71f255544ad",
+              "quantity": 1
+            },
+            {
+              "_id": "6036394306a138204d1b79be",
+              "quantity": 3
+            }
+          ]
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/cart_for_buyer"
+          }
+        ]
+      },
+      "inline_response_200_1": {
+        "example": {
+          "client_secret": "pi_1IaJC6HHvC6AAOnBDuMQnwLu_secret_oQszKZNoSmnakBC963WRlVVYr",
+          "price": 2390
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/payment_intent_for_buyer"
+          }
+        ]
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/inline_response_200_2_user"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/inline_response_200_2_delivery"
+          },
+          "preset_box_ID": {
+            "type": "string",
+            "description": "ID of the box to create when creating the users account"
+          }
+        }
+      },
+      "body_1": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "description": "Persons first name."
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Persons last name."
+          },
+          "personal_identification": {
+            "type": "string",
+            "description": "The individual’s verification document information.\n\nAn identifying document, either a passport or local ID card.\n\nThe uploaded file needs to be a color image (smaller than 8,000px by 8,000px), in JPG, PNG, or PDF format, and less than 10 MB in size.",
+            "format": "base64"
+          },
+          "dob_day": {
+            "type": "string",
+            "description": "day of birth"
+          },
+          "dob_month": {
+            "type": "string",
+            "description": "month of birth"
+          },
+          "dob_year": {
+            "type": "string",
+            "description": "year of birth"
+          },
+          "address_line1": {
+            "type": "string",
+            "description": "street address of the individual is located in."
+          },
+          "address_line2": {
+            "type": "string",
+            "description": "Address line 2 (e.g., apartment, suite, unit, or building)."
+          },
+          "address_postal_code": {
+            "type": "string",
+            "description": "The zip code of the individual is located in."
+          },
+          "address_city": {
+            "type": "string",
+            "description": "The city the individual is located in."
+          },
+          "address_state": {
+            "type": "string",
+            "description": "The state the individual is located in."
+          },
+          "address_country": {
+            "type": "string",
+            "description": "The country the individual is located in."
+          },
+          "account_for": {
+            "type": "string",
+            "description": "Is the account for Personal account or Buiness account. Enum = [Personal, Business]",
+            "enum": [
+              "Personal",
+              "Business"
+            ]
+          },
+          "account_for_name": {
+            "type": "string",
+            "description": "Name related to the ownership type of the account"
+          },
+          "fundraising_name": {
+            "type": "string",
+            "description": "Fundraiser name."
+          },
+          "bank_BSB": {
+            "type": "string",
+            "description": "The BSB for the bank account for funds to be transfered to."
+          },
+          "bank_account_number": {
+            "type": "string",
+            "description": "The account number for the bank account for funds to be transfered to."
+          },
+          "dlvr_address_line1": {
+            "type": "string",
+            "description": "street address to deliver to."
+          },
+          "dlvr_address_line2": {
+            "type": "string",
+            "description": "Address line 2 (e.g., apartment, suite, unit, or building)."
+          },
+          "dlvr_address_postal_code": {
+            "type": "string",
+            "description": "The zip code to deliver to."
+          },
+          "dlvr_address_city": {
+            "type": "string",
+            "description": "The city to deliver to."
+          },
+          "dlvr_address_state": {
+            "type": "string",
+            "description": "The state to deliver to."
+          },
+          "dlvr_address_country": {
+            "type": "string",
+            "description": "The to deliver to."
+          },
+          "dlvr_instructions": {
+            "type": "string",
+            "description": "Delivery instructions"
+          },
+          "dlvr_name": {
+            "type": "string",
+            "description": "Person name to recieve the delivery."
+          },
+          "dlvr_phone": {
+            "type": "string",
+            "description": "Contact number for delivery."
+          },
+          "dlvr_email": {
+            "type": "string",
+            "description": "Contact email for delivery."
+          }
+        }
+      },
+      "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "num_of_boxes": {
+            "type": "integer",
+            "description": "Number of boxes owned."
+          },
+          "sold": {
+            "type": "integer",
+            "description": "Total number of sales."
+          },
+          "profit": {
+            "type": "integer",
+            "description": "Total profit in cents."
+          }
+        }
+      },
+      "inline_response_200_4": {
+        "type": "object",
+        "properties": {
+          "leaderboard": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_4_leaderboard"
+            }
+          }
+        }
+      },
+      "body_2": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "New name of the box."
+          },
+          "new": {
+            "type": "boolean",
+            "description": "Set new status."
+          }
+        }
+      },
+      "sellerproducts_updates": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID of the item to update."
+          },
+          "available": {
+            "type": "integer",
+            "description": "New number of avaliable for the given item."
+          },
+          "price": {
+            "type": "number",
+            "description": "New price for the product."
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Is the product visable to buyers."
+          }
+        }
+      },
+      "body_3": {
+        "type": "object",
+        "properties": {
+          "updates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/sellerproducts_updates"
+            }
+          }
+        }
+      },
+      "inline_response_200_5": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Reason for the error"
+          }
+        }
+      },
+      "base_product_nutrition_information": {
+        "type": "object",
+        "properties": {
+          "gluten_free": {
+            "type": "boolean",
+            "description": "Is the product gluten free?"
+          },
+          "vegan": {
+            "type": "boolean",
+            "description": "Is the product vegan?"
+          },
+          "nut_free": {
+            "type": "boolean",
+            "description": "Is the product nut free?"
+          },
+          "dairy_free": {
+            "type": "boolean",
+            "description": "Is the product dairy free?"
+          }
+        },
+        "description": "Nutrition information for the item"
+      },
+      "refill_order_inner": {
+        "type": "object",
+        "properties": {
+          "box_id": {
+            "type": "string",
+            "description": "ID of the box this set of orders are for."
+          },
+          "cart": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "ID of the item to order"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "description": "Number of the item to buy"
+                }
+              },
+              "description": "Array list of items to order"
+            }
+          },
+          "order_details": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the person recieving the order"
+              },
+              "address": {
+                "type": "object",
+                "description": "delivery address details",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/delivery_address"
+                  }
+                ]
+              },
+              "phone": {
+                "type": "string",
+                "description": "Contact number for delivery"
+              },
+              "email": {
+                "type": "string",
+                "description": "Contact email for delivery"
+              },
+              "instructions": {
+                "type": "string",
+                "description": "Instructions for the delivery."
+              }
+            },
+            "description": "Delivery details"
+          }
+        }
+      },
+      "cart_for_buyer_cart": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Id of the product to purchase"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Quantity of the product to buy"
+          }
+        }
+      },
+      "product_details_for_buyer_in_box_nutrition_information": {
+        "type": "object",
+        "properties": {
+          "gluten_free": {
+            "type": "boolean",
+            "description": "Is the product gluten free?"
+          },
+          "vegan": {
+            "type": "boolean",
+            "description": "Is the product vegan?"
+          },
+          "nut_free": {
+            "type": "boolean",
+            "description": "Is the product nut free?"
+          },
+          "dairy_free": {
+            "type": "boolean",
+            "description": "Is the product dairy free?"
+          }
+        },
+        "description": "All the nutrition information"
+      },
+      "box_refill_order_data_products": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID of the snack proud product"
+          },
+          "price": {
+            "type": "number",
+            "description": "price the item was bought for"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "number of the product bought"
+          }
+        }
+      },
+      "delivery_data_address": {
+        "type": "object",
+        "properties": {
+          "address_line1": {
+            "type": "string",
+            "description": "The users delivery street address"
+          },
+          "address_line2": {
+            "type": "string",
+            "description": "Address line 2 (e.g., apartment, suite, unit, or building)."
+          },
+          "country": {
+            "type": "string",
+            "description": "the users delivery country"
+          },
+          "city": {
+            "type": "string",
+            "description": "the users delivery city"
+          },
+          "state": {
+            "type": "string",
+            "description": "the users delivery state"
+          },
+          "zip": {
+            "type": "string",
+            "description": "the users delivery zip code"
+          }
+        }
+      },
+      "inline_response_200_2_user": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/user_address"
+          },
+          "account_type": {
+            "type": "string",
+            "enum": [
+              "individual",
+              "company"
+            ]
+          },
+          "company_url": {
+            "type": "string",
+            "description": "url of companies website"
+          },
+          "company_description": {
+            "type": "string",
+            "description": "company description"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "persons first name"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "persons last name"
+          },
+          "ABN": {
+            "type": "string",
+            "description": "company Australian business number"
+          }
+        },
+        "description": "user details for new user"
+      },
+      "inline_response_200_2_delivery": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/delivery_address"
+          },
+          "name": {
+            "type": "string",
+            "description": "Persons name for delivery"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Delivery phone number"
+          },
+          "email": {
+            "type": "string",
+            "description": "Delivery/invoice email address"
+          }
+        },
+        "description": "Delivery details for new user"
+      },
+      "inline_response_200_4_leaderboard": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the product"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Variant of the item"
+          },
+          "image_url": {
+            "type": "string",
+            "description": "url that contains an image of the item"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
