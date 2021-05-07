@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Snack Proud API",
-    "description": "This is an API created for the Snack Proud web application only.\n\nScreen sets are the same as labeled in figma file.\n\nThe screen numbers are from left to right as contained in the figma file.\n\nAll API and service listings in the table are clickable and will jump you to the related API.\n\n<table>\n  <thead>\n     <tr>\n        <th>Screen set</th>\n        <th>Screen numbers</th>\n        <th>Service/APIs</th>\n     </tr>\n  </thead>\n  <tbody>\n     <tr>\n        <td><b>Account setup</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1</td>\n        <td><b>NONE</b></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>2-4</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://auth0.com/\">Auth0 - authentication</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>5-11</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/3-Seller-Registration/paths/~1account~1register~1individual/post\">POST - /account/register/individual</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td><b>Setting up box</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1</td>\n        <td><b>NONE</b></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>2</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/get\">GET - /seller/boxes/:box_id</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1doneSetup/patch\">PATCH - /seller/boxes/:box_id/doneSetup</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1boxes~1{box_id}~1products/get\">GET - /seller/boxes/:box_id/products</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/patch\">PATCH - /seller/boxes</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products/patch\">PATCH - /seller/products</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>3</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/get\">GET - /seller/boxes/:box_id</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1boxes~1{box_id}~1products/get\">GET - /seller/boxes/:box_id/products</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1stats/get\">GET - /seller/boxes/stats</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/patch\">PATCH - /seller/boxes</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products/patch\">PATCH - /seller/products</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>4</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1overview/get\">GET - /seller/dashboard/overview</a></li>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1leaderboard/get\">GET - /seller/ dashboard/leaderboard</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1stats/get\">GET - /seller/boxes?stats=true</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>5</td>\n        <td><b>NONE</b></td>\n     </tr>\n     <tr>\n        <td><b>Coming back in future</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://auth0.com/\">Auth0 - authentication</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>2</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1overview/get\">GET - /seller/dashboard/overview</a></li>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1leaderboard/get\">GET - /seller/ dashboard/leaderboard</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1stats/get\">GET - /seller/boxes?stats=true</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>3</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/get\">GET - /seller/boxes/:box_id</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1boxes~1{box_id}~1products/get\">GET - /seller/boxes/:box_id/products</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/patch\">PATCH - /seller/boxes</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products/patch\">PATCH - /seller/products</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>4</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1products~1{box_id}/get\">GET - /seller/snackproud/products/:box_id</a></li>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1MonthlyRefill~1{box_id}/get\">GET - /seller/snackproud/MonthlyRefill/:box_id</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes?stats=true</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>5-6</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1products~1order/post\">POST - /seller/snackproud/products/order</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>7</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1products~1{box_id}/get\">GET - /seller/snackproud/products/:box_id</a></li>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1MonthlyRefill~1{box_id}/get\">GET - /seller/snackproud/MonthlyRefill/:box_id</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes/:box_id?stats=true</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td><b>Coming back in future</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1-2</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/get\">GET - /account/userData</a></li>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/patch\">PATCH - /account/userData</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>3-4</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://auth0.com/\">Auth0 - authentication</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>7</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/get\">GET - /account/userData</a></li>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/patch\">PATCH - /account/userData</a></li>\n           </ul>\n        </td>\n     </tr>\n  </tbody>\n</table>",
+    "description": "This is an API created for the Snack Proud web application only.\n\nScreen sets are the same as labeled in figma file.\n\nThe screen numbers are from left to right as contained in the figma file.\n\nAll API and service listings in the table are clickable and will jump you to the related API.\n\n<table>\n  <thead>\n     <tr>\n        <th>Screen set</th>\n        <th>Screen numbers</th>\n        <th>Service/APIs</th>\n     </tr>\n  </thead>\n  <tbody>\n     <tr>\n        <td><b>Account setup</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1</td>\n        <td><b>NONE</b></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>2-4</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://auth0.com/\">Auth0 - authentication</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>5-11</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/3-Seller-Registration/paths/~1account~1register~1individual/post\">POST - /account/register/individual</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td><b>Setting up box</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1</td>\n        <td><b>NONE</b></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>2</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/get\">GET - /seller/boxes/:box_id</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1doneSetup/patch\">PATCH - /seller/boxes/:box_id/doneSetup</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1boxes~1{box_id}~1products/get\">GET - /seller/boxes/:box_id/products</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/patch\">PATCH - /seller/boxes</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products/patch\">PATCH - /seller/products</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products~1active~1{snack_id}/patch\">PATCH - /seller/products/active/{snack_id}</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>3</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/get\">GET - /seller/boxes/:box_id</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1boxes~1{box_id}~1products/get\">GET - /seller/boxes/:box_id/products</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1stats/get\">GET - /seller/boxes/stats</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/patch\">PATCH - /seller/boxes</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products/patch\">PATCH - /seller/products</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products~1active~1{snack_id}/patch\">PATCH - /seller/products/active/{snack_id}</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>4</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1overview/get\">GET - /seller/dashboard/overview</a></li>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1leaderboard/get\">GET - /seller/ dashboard/leaderboard</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1stats/get\">GET - /seller/boxes?stats=true</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products~1active~1{snack_id}/patch\">PATCH - /seller/products/active/{snack_id}</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>5</td>\n        <td><b>NONE</b></td>\n     </tr>\n     <tr>\n        <td><b>Coming back in future</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://auth0.com/\">Auth0 - authentication</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>2</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1overview/get\">GET - /seller/dashboard/overview</a></li>\n              <li><a href=\"/#tag/5-Seller-Dashboard/paths/~1seller~1dashboard~1leaderboard/get\">GET - /seller/ dashboard/leaderboard</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}~1stats/get\">GET - /seller/boxes?stats=true</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>3</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/get\">GET - /seller/boxes/:box_id</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1boxes~1{box_id}~1products/get\">GET - /seller/boxes/:box_id/products</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes~1{box_id}/patch\">PATCH - /seller/boxes</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products/patch\">PATCH - /seller/products</a></li>\n              <li><a href=\"/#tag/7-Seller-Product/paths/~1seller~1products~1active~1{snack_id}/patch\">PATCH - /seller/products/active/{snack_id}</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>4</td>\n        <td>\n           <b>Services:</b> \n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1products~1{box_id}/get\">GET - /seller/snackproud/products/:box_id</a></li>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1MonthlyRefill~1{box_id}/get\">GET - /seller/snackproud/MonthlyRefill/:box_id</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes?stats=true</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>5-6</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1products~1order/post\">POST - /seller/snackproud/products/order</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>7</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://cloudinary.com/\">Cloudinary - Image urls</a></li>\n           </ul>\n           <b>APIs:</b>\n           <ul>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1products~1{box_id}/get\">GET - /seller/snackproud/products/:box_id</a></li>\n              <li><a href=\"/#tag/8-Seller-Buy-Product/paths/~1seller~1snackproud~1MonthlyRefill~1{box_id}/get\">GET - /seller/snackproud/MonthlyRefill/:box_id</a></li>\n              <li><a href=\"/#tag/6-Seller-Box/paths/~1seller~1boxes/get\">GET - /seller/boxes/:box_id?stats=true</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td><b>Coming back in future</b></td>\n        <td></td>\n        <td></td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>1-2</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/get\">GET - /account/userData</a></li>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/patch\">PATCH - /account/userData</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>3-4</td>\n        <td>\n           <b>Services:</b>\n           <ul>\n              <li><a href=\"https://auth0.com/\">Auth0 - authentication</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>5</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1deliveryData/get\">GET - /account/deliveryData</a></li>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1deliveryData/patch\">PATCH - /account/deliveryData</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>6</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1orderHistory/get\">GET - /account/orderHistory</a></li>\n           </ul>\n        </td>\n     </tr>\n     <tr>\n        <td></td>\n        <td>7</td>\n        <td>\n           <b>APIs:</b> \n           <ul>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/get\">GET - /account/userData</a></li>\n              <li><a href=\"/#tag/4-Seller-Account-management/paths/~1account~1userData/patch\">PATCH - /account/userData</a></li>\n           </ul>\n        </td>\n     </tr>\n  </tbody>\n</table>",
     "version": "1.0"
   },
   "servers": [
@@ -349,6 +349,98 @@
         ]
       }
     },
+    "/account/deliveryData": {
+      "get": {
+        "tags": [
+          "4 - Seller - Account management"
+        ],
+        "summary": "4.3 - Get delivery data",
+        "description": "Get all the users delivery data",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved delivery data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/delivery_data"
+                },
+                "example": {
+                  "address": {
+                    "address_line1": "11 Test_address",
+                    "address_line2": "20",
+                    "country": "Australia",
+                    "city": "Sydney",
+                    "state": "NSW",
+                    "zip": "2222"
+                  },
+                  "instructions": "Some special instructions",
+                  "name": "my contact name here",
+                  "phone": "123456789",
+                  "email": "example@example.com"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "4 - Seller - Account management"
+        ],
+        "summary": "4.4 - Update delivery data",
+        "description": "Update the accounts delivery data",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_3"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated delivery data"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/account/orderHistory": {
+      "get": {
+        "tags": [
+          "4 - Seller - Account management"
+        ],
+        "summary": "4.5 - Get order history",
+        "description": "Get a users order history for all boxes.",
+        "responses": {
+          "200": {
+            "description": "Successfully retireved order history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/seller/dashboard/overview": {
       "get": {
         "tags": [
@@ -381,7 +473,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_3"
+                  "$ref": "#/components/schemas/inline_response_200_4"
                 }
               }
             }
@@ -426,7 +518,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_4"
+                  "$ref": "#/components/schemas/inline_response_200_5"
                 }
               }
             }
@@ -572,7 +664,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_3"
+                "$ref": "#/components/schemas/body_4"
               },
               "example": {
                 "name": "box 1",
@@ -781,7 +873,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_4"
+                "$ref": "#/components/schemas/body_5"
               },
               "example": {
                 "_id": "6057f3af7f00fc0015d8a59c",
@@ -800,7 +892,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/inline_response_200_5"
+                    "$ref": "#/components/schemas/inline_response_200_6"
                   }
                 },
                 "example": [
@@ -810,6 +902,38 @@
                 ]
               }
             }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/products/active/{snack_id}": {
+      "get": {
+        "tags": [
+          "7 - Seller - Product"
+        ],
+        "summary": "7.3 - Activate product",
+        "description": "The api will activate the product with the given id.",
+        "parameters": [
+          {
+            "name": "snack_id",
+            "in": "path",
+            "description": "Product to set as active",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The product was successfuly set as active"
           }
         },
         "security": [
@@ -1130,6 +1254,30 @@
           }
         }
       },
+      "delivery_data": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/delivery_data_address"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Any custom instructions the user has delivery."
+          },
+          "name": {
+            "type": "string",
+            "description": "person to deliver it to name"
+          },
+          "phone": {
+            "type": "string",
+            "description": "contact delivery phone number"
+          },
+          "email": {
+            "type": "string",
+            "description": "delivery contact/invoice email"
+          }
+        }
+      },
       "box_details_seller": {
         "type": "object",
         "properties": {
@@ -1381,30 +1529,6 @@
             "items": {
               "$ref": "#/components/schemas/box_refill_order_data_products"
             }
-          }
-        }
-      },
-      "delivery_data": {
-        "type": "object",
-        "properties": {
-          "address": {
-            "$ref": "#/components/schemas/delivery_data_address"
-          },
-          "instructions": {
-            "type": "string",
-            "description": "Any custom instructions the user has delivery."
-          },
-          "name": {
-            "type": "string",
-            "description": "person to deliver it to name"
-          },
-          "phone": {
-            "type": "string",
-            "description": "contact delivery phone number"
-          },
-          "email": {
-            "type": "string",
-            "description": "delivery contact/invoice email"
           }
         }
       },
@@ -1665,7 +1789,60 @@
           }
         }
       },
+      "body_3": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/delivery_data"
+          },
+          {
+            "example": {
+              "address": {
+                "address_line1": "11 Test_address",
+                "address_line2": "20",
+                "country": "Australia",
+                "city": "Sydney",
+                "state": "NSW",
+                "zip": "2222"
+              },
+              "instructions": "Some special instructions",
+              "name": "my contact name here",
+              "phone": "123456789",
+              "email": "example@example.com"
+            }
+          }
+        ]
+      },
       "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The order id"
+          },
+          "date": {
+            "type": "string",
+            "description": "The date the order was placed"
+          },
+          "invoice_num": {
+            "type": "string",
+            "description": "The invoice number for the order. If no invoice number has been assigned then value will be \"pending\"."
+          },
+          "num_of_products": {
+            "type": "integer",
+            "description": "Total number of products ordered."
+          },
+          "customer_box": {
+            "$ref": "#/components/schemas/inline_response_200_3_customer_box"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_3_products"
+            }
+          }
+        }
+      },
+      "inline_response_200_4": {
         "type": "object",
         "properties": {
           "num_of_boxes": {
@@ -1682,18 +1859,18 @@
           }
         }
       },
-      "inline_response_200_4": {
+      "inline_response_200_5": {
         "type": "object",
         "properties": {
           "leaderboard": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/inline_response_200_4_leaderboard"
+              "$ref": "#/components/schemas/inline_response_200_5_leaderboard"
             }
           }
         }
       },
-      "body_3": {
+      "body_4": {
         "type": "object",
         "properties": {
           "name": {
@@ -1727,7 +1904,7 @@
           }
         }
       },
-      "body_4": {
+      "body_5": {
         "type": "object",
         "properties": {
           "updates": {
@@ -1738,7 +1915,7 @@
           }
         }
       },
-      "inline_response_200_5": {
+      "inline_response_200_6": {
         "type": "object",
         "properties": {
           "message": {
@@ -1839,6 +2016,35 @@
           }
         }
       },
+      "delivery_data_address": {
+        "type": "object",
+        "properties": {
+          "address_line1": {
+            "type": "string",
+            "description": "The users delivery street address"
+          },
+          "address_line2": {
+            "type": "string",
+            "description": "Address line 2 (e.g., apartment, suite, unit, or building)."
+          },
+          "country": {
+            "type": "string",
+            "description": "the users delivery country"
+          },
+          "city": {
+            "type": "string",
+            "description": "the users delivery city"
+          },
+          "state": {
+            "type": "string",
+            "description": "the users delivery state"
+          },
+          "zip": {
+            "type": "string",
+            "description": "the users delivery zip code"
+          }
+        }
+      },
       "product_details_for_buyer_in_box_nutrition_information": {
         "type": "object",
         "properties": {
@@ -1875,35 +2081,6 @@
           "quantity": {
             "type": "integer",
             "description": "number of the product bought"
-          }
-        }
-      },
-      "delivery_data_address": {
-        "type": "object",
-        "properties": {
-          "address_line1": {
-            "type": "string",
-            "description": "The users delivery street address"
-          },
-          "address_line2": {
-            "type": "string",
-            "description": "Address line 2 (e.g., apartment, suite, unit, or building)."
-          },
-          "country": {
-            "type": "string",
-            "description": "the users delivery country"
-          },
-          "city": {
-            "type": "string",
-            "description": "the users delivery city"
-          },
-          "state": {
-            "type": "string",
-            "description": "the users delivery state"
-          },
-          "zip": {
-            "type": "string",
-            "description": "the users delivery zip code"
           }
         }
       },
@@ -1964,7 +2141,37 @@
         },
         "description": "Delivery details for new user"
       },
-      "inline_response_200_4_leaderboard": {
+      "inline_response_200_3_customer_box": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID of the box the order is relevant to."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the box this order is relevant to."
+          }
+        }
+      },
+      "inline_response_200_3_products": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Snack proud product ID that was ordered."
+          },
+          "price": {
+            "type": "integer",
+            "description": "Price each individual item was bought for (in cents)."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Number of the products bought."
+          }
+        }
+      },
+      "inline_response_200_5_leaderboard": {
         "type": "object",
         "properties": {
           "name": {
