@@ -2316,6 +2316,10 @@
             "type": "string",
             "description": "Name of the product"
           },
+          "sold": {
+            "type": "number",
+            "description": "total number of the product solde for the week (or given period if date_enum is provided)"
+          },
           "variant": {
             "type": "string",
             "description": "Variant of the item"
