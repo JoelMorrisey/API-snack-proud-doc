@@ -1138,16 +1138,18 @@
         ],
         "summary": "8.3 - Create order for refill products.",
         "description": "Create an order to refill boxes with refill products.",
-        "responses": {
-          "200": {
-            "description": "The order was successfully processed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/refill_order"
-                }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/refill_order"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The order was successfully processed"
           }
         },
         "security": [
