@@ -46,7 +46,11 @@
     },
     {
       "name": "8 - Seller - Buy Product",
-      "description": "APIs to buy products to add to a box"
+      "description": "APIs to order products to add to a box"
+    },
+    {
+      "name": "9 - Seller - Buy Box",
+      "description": "APIs to order boxes"
     }
   ],
   "paths": {
@@ -922,6 +926,38 @@
         ]
       }
     },
+    "/seller/boxes/{box_id}/resetTopup": {
+      "patch": {
+        "tags": [
+          "6 - Seller - Box"
+        ],
+        "summary": "6.8 - Reset the last topup date",
+        "description": "Set the last topup date to the current date for the given box.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "The id of the box this is in reference to",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The boxes last topup date has been set"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/seller/boxes/{box_id}/products": {
       "get": {
         "tags": [
@@ -1182,6 +1218,73 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/refill_order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The order was successfully processed"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/snackproud/boxes": {
+      "get": {
+        "tags": [
+          "9 - Seller - Buy Box"
+        ],
+        "summary": "9.1 - Get boxes avaliable to buy.",
+        "description": "Get all boxes avaliable to buy",
+        "responses": {
+          "200": {
+            "description": "Successfully retireved boxes avaliable to buy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_8"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/snackproud/boxes/{box_id}/order": {
+      "post": {
+        "tags": [
+          "9 - Seller - Buy Box"
+        ],
+        "summary": "9.1 - Create order for a box.",
+        "description": "This will send an order off for a box.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "id of the box to order.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_6"
               }
             }
           }
@@ -2119,6 +2222,43 @@
           "message": {
             "type": "string",
             "description": "Reason for the error"
+          }
+        }
+      },
+      "inline_response_200_8": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID of the box avaliable to order"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the box"
+          },
+          "image_url": {
+            "type": "string",
+            "description": "image url for the box"
+          },
+          "price": {
+            "type": "integer",
+            "description": "cost of the box in cents"
+          },
+          "rrp": {
+            "type": "integer",
+            "description": "The normal cost of the box"
+          }
+        }
+      },
+      "body_6": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name for the new box"
+          },
+          "delivery_info": {
+            "$ref": "#/components/schemas/delivery_data"
           }
         }
       },
