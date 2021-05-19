@@ -1101,8 +1101,8 @@
         "tags": [
           "7 - Seller - Product"
         ],
-        "summary": "7.3 - Activate product",
-        "description": "The api will activate the product with the given id.",
+        "summary": "7.3 - Activate/Deactivate product",
+        "description": "The api will toggle the activate state of the product with the given id.",
         "parameters": [
           {
             "name": "snack_id",
@@ -1114,11 +1114,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "description": "Active state to set product to",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "The product was successfuly set as active"
+            "description": "The product's active state was successfuly set"
           }
         },
         "security": [
@@ -1173,7 +1184,7 @@
           "8 - Seller - Buy Product"
         ],
         "summary": "8.2 - Get monthly refills.",
-        "description": "Get list of monthly refills that seller can buy.",
+        "description": "Get list of monthly refills that seller can buy. Returned list is ordered by price.",
         "parameters": [
           {
             "name": "box_id",
