@@ -51,6 +51,10 @@
     {
       "name": "9 - Seller - Buy Box",
       "description": "APIs to order boxes"
+    },
+    {
+      "name": "10 - Authentication",
+      "description": "APIs to do custom Auth0 functionality"
     }
   ],
   "paths": {
@@ -1311,6 +1315,44 @@
           }
         ]
       }
+    },
+    "/auth/login": {
+      "patch": {
+        "tags": [
+          "10 - Authentication"
+        ],
+        "summary": "10.1 - Change email and/or password",
+        "description": "This api will allow you to change the currently authenticated users, username or password.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_7"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Users details changed successfully"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2273,6 +2315,27 @@
           }
         }
       },
+      "body_7": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "A valid email address"
+          },
+          "password": {
+            "type": "string",
+            "description": "A valid password"
+          }
+        }
+      },
+      "inline_response_400": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/inline_response_400_error"
+          }
+        }
+      },
       "base_product_nutrition_information": {
         "type": "object",
         "properties": {
@@ -2579,6 +2642,15 @@
           "image_url": {
             "type": "string",
             "description": "url that contains an image of the item"
+          }
+        }
+      },
+      "inline_response_400_error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message with why request was rejected"
           }
         }
       }
