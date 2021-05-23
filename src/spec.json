@@ -1353,6 +1353,176 @@
           }
         ]
       }
+    },
+    "/seller/cart": {
+      "get": {
+        "tags": [
+          "11 - Seller - Cart"
+        ],
+        "summary": "11.1 - Get entire seller cart",
+        "description": "This api will retrieve the entire cart for every box.",
+        "responses": {
+          "200": {
+            "description": "Retrieved entire cart successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_9"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "11 - Seller - Cart"
+        ],
+        "summary": "11.2 - Remove cart item",
+        "description": "This api will remove an item in the users cart",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_8"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "updated cart successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_10"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/cart/size": {
+      "get": {
+        "tags": [
+          "11 - Seller - Cart"
+        ],
+        "summary": "11.3 - Get cart size",
+        "description": "This api will return the total number of products currently in the users cart",
+        "responses": {
+          "200": {
+            "description": "Retrieved cart size successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_10"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/seller/cart/{box_id}": {
+      "get": {
+        "tags": [
+          "11 - Seller - Cart"
+        ],
+        "summary": "11.4 - Get entire seller cart",
+        "description": "This api will retrieve the entire cart for every box.",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "ID of the box you want the cart for",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved box cart successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_11"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "11 - Seller - Cart"
+        ],
+        "summary": "11.5 - Add/update cart item",
+        "description": "This api will add/update an item in the users cart",
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "path",
+            "description": "ID of the box that item is being ordered for",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_9"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "updated cart successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_10"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2336,6 +2506,79 @@
           }
         }
       },
+      "inline_response_200_9": {
+        "type": "object",
+        "properties": {
+          "box_carts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_9_box_carts"
+            }
+          },
+          "cart_total": {
+            "type": "integer",
+            "description": "Total cost of all items in the cart"
+          }
+        }
+      },
+      "body_8": {
+        "required": [
+          "box_id",
+          "product_id"
+        ],
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string",
+            "description": "ID of the product to remove for the given box"
+          },
+          "box_id": {
+            "type": "string",
+            "description": "ID of the box which the product is in"
+          }
+        }
+      },
+      "inline_response_200_10": {
+        "type": "object",
+        "properties": {
+          "cart_size": {
+            "type": "integer",
+            "description": "The total number of products in the cart"
+          }
+        }
+      },
+      "inline_response_200_11": {
+        "type": "object",
+        "properties": {
+          "box_cart": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_9_cart"
+            }
+          },
+          "cart_total": {
+            "type": "integer",
+            "description": "Total cost of all items in the cart"
+          }
+        }
+      },
+      "body_9": {
+        "required": [
+          "product_id",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string",
+            "description": "ID of the product to add/update in the users cart"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "number of the product to buy"
+          }
+        }
+      },
       "base_product_nutrition_information": {
         "type": "object",
         "properties": {
@@ -2651,6 +2894,73 @@
           "message": {
             "type": "string",
             "description": "Message with why request was rejected"
+          }
+        }
+      },
+      "inline_response_200_9_cart": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The id of the product."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product."
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the product."
+          },
+          "variant": {
+            "type": "string",
+            "description": "The variant of the snack."
+          },
+          "price": {
+            "type": "number",
+            "description": "Cost of the product (in cents)."
+          },
+          "image_url": {
+            "type": "string",
+            "description": "url of the image on the CDN"
+          },
+          "nutrition_information": {
+            "$ref": "#/components/schemas/base_product_nutrition_information"
+          },
+          "pack_size": {
+            "type": "integer",
+            "description": "Total number of products to be added by this item if bought"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Total number of this item being bought"
+          }
+        }
+      },
+      "inline_response_200_9_box_info": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID of the box this cart is for"
+          },
+          "name": {
+            "type": "string",
+            "description": "name of the box this cart is for"
+          }
+        }
+      },
+      "inline_response_200_9_box_carts": {
+        "type": "object",
+        "properties": {
+          "cart": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_9_cart"
+            }
+          },
+          "box_info": {
+            "$ref": "#/components/schemas/inline_response_200_9_box_info"
           }
         }
       }
