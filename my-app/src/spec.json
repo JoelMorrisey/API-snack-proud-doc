@@ -1393,6 +1393,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_200_9"
+                },
+                "example": {
+                  "box_carts": [
+                    {
+                      "cart": [
+                        {
+                          "_id": "603637cbd9ea062581df00b2",
+                          "name": "Googys, Collagen Protein Bar, Mixed Berry",
+                          "description": "20 Googys, Collagen Protein Bar to satisfy your taste buds",
+                          "price": 2912,
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614572060/Googys-Collagen-Protein-Bar-Mixed-Berry.jpg",
+                          "pack_size": 20,
+                          "quantity": 11,
+                          "variant": "Mixed Berry",
+                          "nutrition_information": {
+                            "gluten_free": true,
+                            "vegan": false,
+                            "nut_free": false,
+                            "dairy_free": true
+                          }
+                        }
+                      ],
+                      "box_info": {
+                        "_id": "609e23c3c149f8772db5b456",
+                        "name": "Level 1 Box"
+                      }
+                    }
+                  ],
+                  "cart_total": 32032
                 }
               }
             }
@@ -1415,6 +1444,10 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/body_8"
+              },
+              "example": {
+                "product_id": "603637cbd9ea062581df00b2",
+                "box_id": "609e23c3c149f8772db5b456"
               }
             }
           }
@@ -1452,6 +1485,9 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_200_10"
+                },
+                "example": {
+                  "cart_size": 1
                 }
               }
             }
@@ -1481,7 +1517,8 @@
             "explode": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "609e23c3c149f8772db5b456"
           }
         ],
         "responses": {
@@ -1491,6 +1528,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_200_11"
+                },
+                "example": {
+                  "box_cart": [
+                    {
+                      "_id": "603637cbd9ea062581df00b2",
+                      "name": "Googys, Collagen Protein Bar, Mixed Berry",
+                      "description": "20 Googys, Collagen Protein Bar to satisfy your taste buds",
+                      "price": 2912,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614572060/Googys-Collagen-Protein-Bar-Mixed-Berry.jpg",
+                      "pack_size": 20,
+                      "quantity": 11,
+                      "variant": "Mixed Berry",
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": false,
+                        "nut_free": false,
+                        "dairy_free": true
+                      }
+                    }
+                  ],
+                  "cart_total": 32032
                 }
               }
             }
@@ -1518,7 +1576,8 @@
             "explode": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "609e23c3c149f8772db5b456"
           }
         ],
         "requestBody": {
@@ -1526,6 +1585,10 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/body_9"
+              },
+              "example": {
+                "product_id": "603637cbd9ea062581df00b2",
+                "quantity": 11
               }
             }
           }
@@ -1537,6 +1600,9 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_200_10"
+                },
+                "example": {
+                  "cart_size": 1
                 }
               }
             }
