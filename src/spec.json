@@ -1233,7 +1233,32 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/refill_order"
-              }
+              },
+              "example": [
+                {
+                  "box_id": "609e23c3c149f8772db5b456",
+                  "cart": [
+                    {
+                      "_id": "603635cec3e97ce640cd87bd",
+                      "quantity": 1
+                    }
+                  ],
+                  "order_details": {
+                    "name": "jimmy",
+                    "address": {
+                      "address_line1": "address_line1",
+                      "address_line2": "address_line2",
+                      "country": "Australia",
+                      "city": "Waterloo",
+                      "state": "NSW",
+                      "zip": "2017"
+                    },
+                    "phone": "123456789",
+                    "email": "some@some.com",
+                    "instructions": "Please deliver it fast"
+                  }
+                }
+              ]
             }
           }
         },
