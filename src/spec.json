@@ -231,7 +231,10 @@
                     "phone": "000000000",
                     "email": "example@example.com"
                   },
-                  "preset_box_ID": "5ffc1cf7820e93259f6a4d97"
+                  "box_details": {
+                    "preset_box_ID": "5ffc1cf7820e93259f6a4d97",
+                    "name": "new Box"
+                  }
                 }
               }
             }
@@ -270,6 +273,16 @@
         "responses": {
           "200": {
             "description": "Account has been successfully created."
+          },
+          "206": {
+            "description": "Account has been created, box was trying to be created however failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_206"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2167,13 +2180,42 @@
           "delivery": {
             "$ref": "#/components/schemas/inline_response_200_2_delivery"
           },
-          "preset_box_ID": {
-            "type": "string",
-            "description": "ID of the box to create when creating the users account"
+          "box_details": {
+            "$ref": "#/components/schemas/inline_response_200_2_box_details"
           }
         }
       },
       "body_1": {
+        "required": [
+          "account_for",
+          "account_for_name",
+          "address_city",
+          "address_country",
+          "address_line1",
+          "address_line2",
+          "address_postal_code",
+          "address_state",
+          "bank_BSB",
+          "bank_account_number",
+          "contact_number",
+          "dlvr_address_city",
+          "dlvr_address_country",
+          "dlvr_address_line1",
+          "dlvr_address_line2",
+          "dlvr_address_postal_code",
+          "dlvr_address_state",
+          "dlvr_email",
+          "dlvr_instructions",
+          "dlvr_name",
+          "dlvr_phone",
+          "dob_day",
+          "dob_month",
+          "dob_year",
+          "email",
+          "first_name",
+          "last_name",
+          "personal_identification"
+        ],
         "type": "object",
         "properties": {
           "first_name": {
@@ -2296,6 +2338,27 @@
           "dlvr_email": {
             "type": "string",
             "description": "Contact email for delivery."
+          },
+          "pending_acc_id": {
+            "type": "string",
+            "description": "id used to get pending account info details on the pending box info (required if preset_box_ID is given)."
+          },
+          "preset_box_ID": {
+            "type": "string",
+            "description": "ID of the box to create when creating the users account."
+          },
+          "box_name": {
+            "type": "string",
+            "description": "New name for the box."
+          }
+        }
+      },
+      "inline_response_206": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A message of what went wrong."
           }
         }
       },
@@ -2886,6 +2949,20 @@
           }
         },
         "description": "Delivery details for new user"
+      },
+      "inline_response_200_2_box_details": {
+        "type": "object",
+        "properties": {
+          "preset_box_ID": {
+            "type": "string",
+            "description": "ID of the box to create when creating the users account"
+          },
+          "name": {
+            "type": "string",
+            "description": "New name for the box"
+          }
+        },
+        "description": "create box for new account details"
       },
       "inline_response_200_3_customer_box": {
         "type": "object",
