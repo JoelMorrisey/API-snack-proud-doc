@@ -452,7 +452,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_3"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200_3"
+                  }
                 }
               }
             }
@@ -1318,7 +1321,7 @@
         "tags": [
           "9 - Seller - Buy Box"
         ],
-        "summary": "9.1 - Create order for a box.",
+        "summary": "9.2 - Create order for a box.",
         "description": "This will send an order off for a box.",
         "parameters": [
           {
@@ -2471,6 +2474,36 @@
           }
         ]
       },
+      "accountorderHistory_customer_box": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID of the box the order is relevant to."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the box this order is relevant to."
+          }
+        }
+      },
+      "accountorderHistory_products": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Snack proud product ID that was ordered."
+          },
+          "price": {
+            "type": "integer",
+            "description": "Price each individual item was bought for (in cents)."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Number of the products bought."
+          }
+        }
+      },
       "inline_response_200_3": {
         "type": "object",
         "properties": {
@@ -2495,12 +2528,12 @@
             "description": "Total number of products ordered."
           },
           "customer_box": {
-            "$ref": "#/components/schemas/inline_response_200_3_customer_box"
+            "$ref": "#/components/schemas/accountorderHistory_customer_box"
           },
           "products": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/inline_response_200_3_products"
+              "$ref": "#/components/schemas/accountorderHistory_products"
             }
           }
         }
@@ -2963,36 +2996,6 @@
           }
         },
         "description": "create box for new account details"
-      },
-      "inline_response_200_3_customer_box": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "description": "ID of the box the order is relevant to."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the box this order is relevant to."
-          }
-        }
-      },
-      "inline_response_200_3_products": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "description": "Snack proud product ID that was ordered."
-          },
-          "price": {
-            "type": "integer",
-            "description": "Price each individual item was bought for (in cents)."
-          },
-          "quantity": {
-            "type": "integer",
-            "description": "Number of the products bought."
-          }
-        }
       },
       "inline_response_200_4_product": {
         "type": "object",
