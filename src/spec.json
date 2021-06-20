@@ -1039,7 +1039,7 @@
                       "description": "Snack Proud raw chocolate truffles are very indulgent and delicious and taste like an after dinner mint brownie.\\nThere are chocolate chunks and coconut chips in the middle. Safely portion-controlled so you can keep one in their handbag to have between meetings.",
                       "active": true,
                       "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610438688/Snack-Proud-Choc-Mint-Truffle.png",
-                      "price": 4.25,
+                      "price": 425,
                       "avaliable": 10,
                       "nutrition_information": {
                         "gluten_free": true,
@@ -1081,10 +1081,14 @@
                 "$ref": "#/components/schemas/body_5"
               },
               "example": {
-                "_id": "6057f3af7f00fc0015d8a59c",
-                "available": 11,
-                "price": 6.55,
-                "active": false
+                "updates": [
+                  {
+                    "_id": "6057f3af7f00fc0015d8a59c",
+                    "available": 11,
+                    "price": 655,
+                    "active": false
+                  }
+                ]
               }
             }
           }
