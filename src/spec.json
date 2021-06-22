@@ -1525,8 +1525,8 @@
         "tags": [
           "11 - Seller - Cart"
         ],
-        "summary": "11.4 - Get entire seller cart",
-        "description": "This api will retrieve the entire cart for every box.",
+        "summary": "11.4 - Get cart for single box",
+        "description": "This api will retrieve the cart for a single box.",
         "parameters": [
           {
             "name": "box_id",
