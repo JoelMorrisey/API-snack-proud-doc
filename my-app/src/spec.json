@@ -1121,7 +1121,7 @@
       }
     },
     "/seller/products/active/{snack_id}": {
-      "get": {
+      "patch": {
         "tags": [
           "7 - Seller - Product"
         ],
