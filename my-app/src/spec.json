@@ -1337,7 +1337,8 @@
             "explode": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "5ffd2581f5cba2652ab27198"
           }
         ],
         "requestBody": {
@@ -2648,6 +2649,26 @@
               "$ref": "#/components/schemas/inline_response_200_8_boxes"
             }
           }
+        },
+        "example": {
+          "boxes": [
+            {
+              "_id": "5ffd2581f5cba2652ab27198",
+              "name": "80 piece snack box with display",
+              "description": "A snack box with 80 items in it.",
+              "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610441579/empty_box.png",
+              "price": 18900,
+              "rrp": 25000
+            },
+            {
+              "_id": "5ffc1cf7820e93259f6a4d97",
+              "name": "50 piece snack box with display",
+              "description": "A Snack box with with 50 items in it.",
+              "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610441704/Snack-Proud-Office-Snack-Box.jpg",
+              "price": 12500,
+              "rrp": 20000
+            }
+          ]
         }
       },
       "body_6": {
@@ -2659,6 +2680,23 @@
           },
           "delivery_info": {
             "$ref": "#/components/schemas/delivery_data"
+          }
+        },
+        "example": {
+          "name": "My first box",
+          "delivery_info": {
+            "address": {
+              "address_line1": "1 Some address",
+              "address_line2": "12",
+              "country": "Australia",
+              "city": "Sydney CBD",
+              "state": "NSW",
+              "zip": "2000"
+            },
+            "instructions": "Please be careful",
+            "name": "Jimmy john",
+            "phone": "1234567890",
+            "email": "email@email.com"
           }
         }
       },
