@@ -2642,25 +2642,11 @@
       "inline_response_200_8": {
         "type": "object",
         "properties": {
-          "_id": {
-            "type": "string",
-            "description": "ID of the box avaliable to order"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the box"
-          },
-          "image_url": {
-            "type": "string",
-            "description": "image url for the box"
-          },
-          "price": {
-            "type": "integer",
-            "description": "cost of the box in cents"
-          },
-          "rrp": {
-            "type": "integer",
-            "description": "The normal cost of the box"
+          "boxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_8_boxes"
+            }
           }
         }
       },
@@ -3060,6 +3046,35 @@
           "image_url": {
             "type": "string",
             "description": "url that contains an image of the item"
+          }
+        }
+      },
+      "inline_response_200_8_boxes": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID of the box avaliable to order"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the box"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the box"
+          },
+          "image_url": {
+            "type": "string",
+            "description": "image url for the box"
+          },
+          "price": {
+            "type": "integer",
+            "description": "cost of the box in cents"
+          },
+          "rrp": {
+            "type": "integer",
+            "description": "The normal cost of the box"
           }
         }
       },
