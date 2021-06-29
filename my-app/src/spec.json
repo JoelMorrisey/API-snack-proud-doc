@@ -196,7 +196,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Stripe account has successfully been created.",
+            "description": "Successfully got pending account.",
             "content": {
               "application/json": {
                 "schema": {
@@ -204,6 +204,15 @@
                 },
                 "example": {
                   "user": {
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "contact_number": "1234567890",
+                    "email": "example@example.com",
+                    "dob": {
+                      "day": 10,
+                      "month": 11,
+                      "year": 2000
+                    },
                     "address": {
                       "address_line1": "Some address",
                       "address_line2": "12",
@@ -212,11 +221,11 @@
                       "state": "NSW",
                       "zip": "2222"
                     },
-                    "account_type": "individual",
-                    "company_description": "Some description",
-                    "first_name": "John",
-                    "last_name": "Doe",
-                    "ABN": "000000000"
+                    "account_for": "Personal",
+                    "account_for_name": "Jimmy's private shop",
+                    "fundraising_name": "My fundraiser",
+                    "bank_bsb": "110000",
+                    "bank_account_number": "000123456"
                   },
                   "delivery": {
                     "address": {
@@ -227,9 +236,10 @@
                       "state": "NSW",
                       "zip": "2222"
                     },
+                    "instructions": "Some instructions",
                     "name": "John doe",
                     "phone": "000000000",
-                    "email": "example@example.com"
+                    "email": "example1@example.com"
                   },
                   "box_details": {
                     "preset_box_ID": "5ffc1cf7820e93259f6a4d97",
@@ -2182,6 +2192,10 @@
       "inline_response_200_2": {
         "type": "object",
         "properties": {
+          "_id": {
+            "type": "string",
+            "description": "id of the pending account"
+          },
           "user": {
             "$ref": "#/components/schemas/inline_response_200_2_user"
           },
@@ -2954,27 +2968,27 @@
           }
         }
       },
+      "inline_response_200_2_user_dob": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "integer",
+            "description": "Day user was born"
+          },
+          "month": {
+            "type": "integer",
+            "description": "Month user was born"
+          },
+          "year": {
+            "type": "integer",
+            "description": "Year user was born"
+          }
+        },
+        "description": "Users date of birth"
+      },
       "inline_response_200_2_user": {
         "type": "object",
         "properties": {
-          "address": {
-            "$ref": "#/components/schemas/user_address"
-          },
-          "account_type": {
-            "type": "string",
-            "enum": [
-              "individual",
-              "company"
-            ]
-          },
-          "company_url": {
-            "type": "string",
-            "description": "url of companies website"
-          },
-          "company_description": {
-            "type": "string",
-            "description": "company description"
-          },
           "first_name": {
             "type": "string",
             "description": "persons first name"
@@ -2983,9 +2997,42 @@
             "type": "string",
             "description": "persons last name"
           },
-          "ABN": {
+          "contact_number": {
             "type": "string",
-            "description": "company Australian business number"
+            "description": "account phone number"
+          },
+          "email": {
+            "type": "string",
+            "description": "account email"
+          },
+          "dob": {
+            "$ref": "#/components/schemas/inline_response_200_2_user_dob"
+          },
+          "address": {
+            "$ref": "#/components/schemas/user_address"
+          },
+          "account_for": {
+            "type": "string",
+            "enum": [
+              "Personal",
+              "Business"
+            ]
+          },
+          "account_for_name": {
+            "type": "string",
+            "description": "What is the account for in relation to the account_for feild"
+          },
+          "fundraising_name": {
+            "type": "string",
+            "description": "Name of funderaiser if they are for a fundraiser"
+          },
+          "bank_bsb": {
+            "type": "string",
+            "description": "Users bsb for there bank account"
+          },
+          "bank_account_number": {
+            "type": "string",
+            "description": "bank account number for user"
           }
         },
         "description": "user details for new user"
@@ -2995,6 +3042,10 @@
         "properties": {
           "address": {
             "$ref": "#/components/schemas/delivery_address"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Instructions for delivery"
           },
           "name": {
             "type": "string",
