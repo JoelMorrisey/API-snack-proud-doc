@@ -248,6 +248,19 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Could not find pending account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Could not find pending account"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -285,11 +298,267 @@
             "description": "Account has been successfully created."
           },
           "206": {
-            "description": "Account has been created, box was trying to be created however failed.",
+            "description": "Account has been created, box creation however failed.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_206"
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "Unable to delete pending account": {
+                    "summary": "Unable to delete pending account",
+                    "value": {
+                      "message": "Something went wrong but you don't need to worry you have your account, we'll solve the issue!"
+                    }
+                  },
+                  "Unable to delete create box": {
+                    "summary": "Unable to delete create box",
+                    "value": {
+                      "message": "Something went wrong, your account was created however we were unable to create box for your account automatically please contact Snack Proud"
+                    }
+                  },
+                  "Submitted box creation info without pending account ID": {
+                    "summary": "Submitted box creation info without pending account ID",
+                    "value": {
+                      "message": "Could not create box as either preset_box_ID, box_name or pending_acc_id was missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input was provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "single feild": {
+                    "summary": "example of a single invalid feild",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "address.address_line1"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "address.address_line1",
+                          "message": "Path 'address.address_line1' is required.",
+                          "input_given": ""
+                        }
+                      ]
+                    }
+                  },
+                  "many feilds": {
+                    "summary": "example of many invalid feild",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "address.address_line1",
+                        "address.country",
+                        "address.city",
+                        "address.state",
+                        "address.zip",
+                        "name",
+                        "email"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "address.address_line1",
+                          "message": "Path `address.address_line1` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.country",
+                          "message": "Path `address.country` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.city",
+                          "message": "Path `address.city` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.state",
+                          "message": "Path `address.state` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.zip",
+                          "message": "Path `address.zip` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "name",
+                          "message": "Path `name` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "email",
+                          "message": "Must provide a valid email",
+                          "input_given": "examplee.com"
+                        }
+                      ]
+                    }
+                  },
+                  "Invalid user data": {
+                    "summary": "Invalid user data",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "first_name",
+                        "last_name",
+                        "dob",
+                        "address.line1",
+                        "address.country",
+                        "address.city",
+                        "address.state",
+                        "address.zip",
+                        "account_for",
+                        "account_for_name",
+                        "contact_number",
+                        "email"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "first_name",
+                          "message": "Path `first_name` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "last_name",
+                          "message": "Path `last_name` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "dob",
+                          "message": "Must be a valid date",
+                          "input_given": "2022-02-07T13:00:00.000Z"
+                        },
+                        {
+                          "feild": "address.line1",
+                          "message": "Path `address.line1` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.country",
+                          "message": "Path `address.country` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.city",
+                          "message": "Path `address.city` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.state",
+                          "message": "Path `address.state` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.zip",
+                          "message": "Path `address.zip` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "account_for",
+                          "message": "Must provide what the account is for",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "account_for_name",
+                          "message": "Must provide account name for choosen accout_for",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "contact_number",
+                          "message": "Path `contact_number` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "email",
+                          "message": "Must provide a valid email",
+                          "input_given": "1.com"
+                        }
+                      ]
+                    }
+                  },
+                  "Invalid delivery data": {
+                    "summary": "Invalid delivery data",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "address.address_line1",
+                        "address.country",
+                        "address.city",
+                        "address.state",
+                        "address.zip",
+                        "name",
+                        "email"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "address.address_line1",
+                          "message": "Path `address.address_line1` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.country",
+                          "message": "Path `address.country` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.city",
+                          "message": "Path `address.city` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.state",
+                          "message": "Path `address.state` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.zip",
+                          "message": "Path `address.zip` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "name",
+                          "message": "Path `name` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "email",
+                          "message": "Must provide a valid email",
+                          "input_given": "examplee.com"
+                        }
+                      ]
+                    }
+                  },
+                  "Invalid account for data": {
+                    "summary": "Invalid account for data",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "account_for"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "account_for",
+                          "message": "The account_for is required to be either Personal or Business",
+                          "input_given": "P"
+                        }
+                      ]
+                    }
+                  },
+                  "Account already exists": {
+                    "summary": "Account already exists",
+                    "value": {
+                      "message": "User data already created, try using update instead"
+                    }
+                  }
                 }
               }
             }
@@ -318,21 +587,21 @@
                   "$ref": "#/components/schemas/user_data"
                 },
                 "example": {
-                  "first_name": "John",
-                  "last_name": "doe",
-                  "dob": "1901-01-31T14:00:00.000Z",
+                  "first_name": "Jimmy",
+                  "last_name": "john",
+                  "dob": "1994-09-09T14:00:00.000Z",
                   "address": {
-                    "address_line1": "Some street address",
-                    "address_line2": "21",
-                    "country": "AU",
+                    "line1": "address_full_match",
+                    "zip": "2017",
                     "city": "Waterloo",
                     "state": "NSW",
-                    "zip": "2017"
+                    "country": "AU",
+                    "line2": "12"
                   },
                   "account_type": "individual",
                   "account_for": "Personal",
-                  "account_for_name": "Jimmy's gym",
-                  "fundraising": "helping everyone fundraiser",
+                  "account_for_name": "Jimmy",
+                  "fundraising": "Some fun somewhere",
                   "account_num_last_4": "3456",
                   "BSB": "11 0000",
                   "contact_number": "0000000000",
@@ -374,6 +643,70 @@
         "responses": {
           "200": {
             "description": "Successfully updated user data"
+          },
+          "400": {
+            "description": "Invalid input provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "Invalid date": {
+                    "summary": "Invalid date of birth",
+                    "value": {
+                      "message": "Date provided -1/10/1991 is an invalid date"
+                    }
+                  },
+                  "Invalid user data": {
+                    "summary": "Invalid user data",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "email",
+                        "contact_number",
+                        "account_for_name",
+                        "account_for",
+                        "last_name",
+                        "first_name"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "email",
+                          "message": "Must provide a valid email",
+                          "input_given": "@1.com"
+                        },
+                        {
+                          "feild": "contact_number",
+                          "message": "Path `contact_number` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "account_for_name",
+                          "message": "Must provide account name for choosen accout_for",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "account_for",
+                          "message": "Must provide what the account is for",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "last_name",
+                          "message": "Path `last_name` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "first_name",
+                          "message": "Path `first_name` is required.",
+                          "input_given": ""
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -400,17 +733,17 @@
                 },
                 "example": {
                   "address": {
-                    "address_line1": "11 Test_address",
-                    "address_line2": "20",
+                    "address_line1": " 300 Floria",
+                    "address_line2": "Lilama",
                     "country": "Australia",
-                    "city": "Sydney",
+                    "city": "Waterloo",
                     "state": "NSW",
-                    "zip": "2222"
+                    "zip": "0123"
                   },
-                  "instructions": "Some special instructions",
-                  "name": "my contact name here",
-                  "phone": "123456789",
-                  "email": "example@example.com"
+                  "instructions": "Some instruction",
+                  "name": "john doe",
+                  "phone": 398740295,
+                  "email": "snacktest@test.com"
                 }
               }
             }
@@ -440,6 +773,70 @@
         "responses": {
           "200": {
             "description": "Successfully updated delivery data"
+          },
+          "400": {
+            "description": "Invalid input provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "Invalid data": {
+                    "summary": "Invalid account for data",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "address.address_line1",
+                        "address.country",
+                        "address.city",
+                        "address.state",
+                        "address.zip",
+                        "email",
+                        "name"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "address.address_line1",
+                          "message": "Path `address.address_line1` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.country",
+                          "message": "Path `address.country` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.city",
+                          "message": "Path `address.city` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.state",
+                          "message": "Path `address.state` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "address.zip",
+                          "message": "Path `address.zip` is required.",
+                          "input_given": ""
+                        },
+                        {
+                          "feild": "email",
+                          "message": "Must provide a valid email",
+                          "input_given": "@ss"
+                        },
+                        {
+                          "feild": "name",
+                          "message": "Path `name` is required.",
+                          "input_given": ""
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -466,7 +863,50 @@
                   "items": {
                     "$ref": "#/components/schemas/inline_response_200_3"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "_id": "60e65d217a431900154cdd60",
+                    "date": "2021-07-08T02:04:17.882Z",
+                    "invoice_num": "Pending",
+                    "num_of_products": 3,
+                    "customer_box": {
+                      "_id": "609e23d8c149f8772db5b457",
+                      "name": "Level 2 Box",
+                      "last_updated": "2021-06-28T07:38:46.916Z"
+                    },
+                    "products": [
+                      {
+                        "_id": "603b2f5ad9ea062581df00b5",
+                        "price": 12500,
+                        "quantity": 3
+                      }
+                    ]
+                  },
+                  {
+                    "_id": "60e65ccb7a431900154cdd5d",
+                    "date": "2021-07-08T02:02:51.674Z",
+                    "invoice_num": "Pending",
+                    "num_of_products": 3,
+                    "customer_box": {
+                      "_id": "609e23c3c149f8772db5b456",
+                      "name": "Level 1 Box",
+                      "last_updated": "2021-06-25T07:33:45.660Z"
+                    },
+                    "products": [
+                      {
+                        "_id": "603635cec3e97ce640cd87bd",
+                        "price": 3023,
+                        "quantity": 1
+                      },
+                      {
+                        "_id": "603b2f5ad9ea062581df00b5",
+                        "price": 12500,
+                        "quantity": 2
+                      }
+                    ]
+                  }
+                ]
               }
             }
           }
@@ -494,7 +934,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23d8c149f8772db5b457"
             }
           }
         ],
@@ -505,6 +946,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_200_4"
+                },
+                "example": {
+                  "box_id": "609e23d8c149f8772db5b457",
+                  "cart": [
+                    {
+                      "product": {
+                        "_id": "603b2f5ad9ea062581df00b5",
+                        "name": "50 piece",
+                        "description": "A collection of delicious snacks for your monthly refill",
+                        "price": 12500,
+                        "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614571845/monthly-refill-box.png",
+                        "type": "Monthly refill",
+                        "total_quantity": 30
+                      },
+                      "quantity": 3
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Could not find order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Order history item does not exist"
                 }
               }
             }
@@ -550,6 +1021,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_200_5"
+                },
+                "example": {
+                  "num_of_boxes": 3,
+                  "sold": 26,
+                  "profit": 4260
                 }
               }
             }
@@ -595,6 +1071,74 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_200_6"
+                },
+                "examples": {
+                  "Empty leaderboard": {
+                    "summary": "Empty leaderboard",
+                    "value": []
+                  },
+                  "Only 3 items in the leaderboard": {
+                    "summary": "Only 3 items in the leaderboard",
+                    "value": {
+                      "leaderboard": [
+                        {
+                          "sold": 10,
+                          "name": "Choc Not Choc, Mint Brownie ball",
+                          "variant": "chocolate",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610438688/Snack-Proud-Choc-Mint-Truffle.png"
+                        },
+                        {
+                          "sold": 9,
+                          "name": "Googys, Collagen Protein Bar",
+                          "variant": "Mixed Berry",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1611653365/googys-collagen-bar-mixed-berry_h2jcml.png"
+                        },
+                        {
+                          "sold": 7,
+                          "name": "Test product 1",
+                          "variant": "variant 1",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1620977988/sample%20products/TestProduct1.png"
+                        }
+                      ]
+                    }
+                  },
+                  "Full leaderboard": {
+                    "summary": "Full leaderboard",
+                    "value": {
+                      "leaderboard": [
+                        {
+                          "sold": 10,
+                          "name": "Choc Not Choc, Mint Brownie ball",
+                          "variant": "chocolate",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610438688/Snack-Proud-Choc-Mint-Truffle.png"
+                        },
+                        {
+                          "sold": 9,
+                          "name": "Googys, Collagen Protein Bar",
+                          "variant": "Mixed Berry",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1611653365/googys-collagen-bar-mixed-berry_h2jcml.png"
+                        },
+                        {
+                          "sold": 7,
+                          "name": "Test product 1",
+                          "variant": "variant 1",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1620977988/sample%20products/TestProduct1.png"
+                        },
+                        {
+                          "sold": 5,
+                          "name": "Test product 2",
+                          "variant": "variant 2",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1620977988/sample%20products/TestProduct2.png"
+                        },
+                        {
+                          "sold": 4,
+                          "name": "Test product 3",
+                          "variant": "variant 3",
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1620977989/sample%20products/TestProduct3.png"
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -661,6 +1205,98 @@
                       }
                     ]
                   }
+                },
+                "examples": {
+                  "stats true": {
+                    "summary": "Stats is set to true",
+                    "value": [
+                      {
+                        "_id": "609e23c3c149f8772db5b456",
+                        "name": "Level 1 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-06-25T07:33:45.660Z",
+                        "most_popular": "Choc Not Choc, Mint Brownie ball",
+                        "sold": 15,
+                        "profit": 2820,
+                        "available": 57
+                      },
+                      {
+                        "_id": "609e23d8c149f8772db5b457",
+                        "name": "Level 2 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-06-28T07:38:46.916Z",
+                        "most_popular": "Googys, Collagen Protein Bar",
+                        "sold": 4,
+                        "profit": 600,
+                        "available": 56
+                      },
+                      {
+                        "_id": "609e23f7c149f8772db5b458",
+                        "name": "Level 3 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-07-05T07:11:29.866Z",
+                        "most_popular": "Test product 1",
+                        "sold": 7,
+                        "profit": 840,
+                        "available": 50
+                      }
+                    ]
+                  },
+                  "no stats": {
+                    "summary": "Stats not set",
+                    "value": [
+                      {
+                        "_id": "609e23c3c149f8772db5b456",
+                        "name": "Level 1 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-06-25T07:33:45.660Z"
+                      },
+                      {
+                        "_id": "609e23d8c149f8772db5b457",
+                        "name": "Level 2 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-06-28T07:38:46.916Z"
+                      },
+                      {
+                        "_id": "609e23f7c149f8772db5b458",
+                        "name": "Level 3 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-07-05T07:11:29.866Z"
+                      }
+                    ]
+                  },
+                  "stats false": {
+                    "summary": "Stats is set to false",
+                    "value": [
+                      {
+                        "_id": "609e23c3c149f8772db5b456",
+                        "name": "Level 1 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-06-25T07:33:45.660Z"
+                      },
+                      {
+                        "_id": "609e23d8c149f8772db5b457",
+                        "name": "Level 2 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-06-28T07:38:46.916Z"
+                      },
+                      {
+                        "_id": "609e23f7c149f8772db5b458",
+                        "name": "Level 3 Box",
+                        "new": false,
+                        "topping_up": false,
+                        "last_updated": "2021-07-05T07:11:29.866Z"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -689,7 +1325,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
@@ -702,9 +1339,24 @@
                   "$ref": "#/components/schemas/box_details_seller"
                 },
                 "example": {
-                  "_id": "60863f82c149f8772db5b451",
-                  "name": "test box",
-                  "new": false
+                  "_id": "609e23c3c149f8772db5b456",
+                  "name": "Level 1 Box",
+                  "new": false,
+                  "topping_up": false,
+                  "last_updated": "2021-06-25T07:33:45.660Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Could not find box",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
                 }
               }
             }
@@ -731,7 +1383,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
@@ -752,6 +1405,53 @@
         "responses": {
           "200": {
             "description": "Box was updated successfully"
+          },
+          "400": {
+            "description": "Invalid input provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "invalid name": {
+                    "summary": "invalid name",
+                    "value": {
+                      "message": "One or more feilds are invalid",
+                      "feilds": [
+                        "name"
+                      ],
+                      "reasons": [
+                        {
+                          "feild": "name",
+                          "message": "must be a valid name",
+                          "input_given": ""
+                        }
+                      ]
+                    }
+                  },
+                  "invalid new format": {
+                    "summary": "New feild provided in invalid format",
+                    "value": {
+                      "message": "Feild new was given in an invalid format"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Could not find box",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -777,7 +1477,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
@@ -791,17 +1492,30 @@
                 },
                 "example": {
                   "address": {
-                    "address_line1": "1 someWhere street",
+                    "address_line1": "address_full_match",
                     "address_line2": "12",
-                    "city": "Sydney",
                     "country": "AU",
+                    "city": "Waterloo",
                     "state": "NSW",
-                    "zip": 2000
+                    "zip": "2017"
                   },
                   "instructions": "Some instructions",
                   "name": "Jim john",
                   "phone": "0000000000",
                   "email": "e@gmail.com"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Delivery details not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Delivery data not found"
                 }
               }
             }
@@ -828,7 +1542,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
@@ -859,6 +1574,42 @@
         "responses": {
           "200": {
             "description": "The box updated successfully"
+          },
+          "400": {
+            "description": "Invalid delivery data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "One or more feilds are invalid",
+                  "feilds": [
+                    "email"
+                  ],
+                  "reasons": [
+                    {
+                      "feild": "email",
+                      "message": "Must provide a valid email",
+                      "input_given": "cd"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Delivery data not found"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -884,7 +1635,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           },
           {
@@ -912,6 +1664,28 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/box_specific_stats_seller"
+                },
+                "example": {
+                  "_id": "609e23c3c149f8772db5b456",
+                  "total_sold_since_update": 0,
+                  "total_profit_since_update": 0,
+                  "sold": 15,
+                  "profit": 2820,
+                  "available": 57,
+                  "has_made_sale": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
                 }
               }
             }
@@ -940,13 +1714,27 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "The boxes new flag has been set to false"
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -972,13 +1760,27 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "The boxes last topup date has been set"
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1004,7 +1806,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           },
           {
@@ -1043,27 +1846,61 @@
                 "example": {
                   "products": [
                     {
-                      "_id": "60864477c149f8772db452",
+                      "_id": "609e27337a0051125123c313",
                       "name": "Choc Not Choc, Mint Brownie ball",
                       "variant": "chocolate",
-                      "description": "Snack Proud raw chocolate truffles are very indulgent and delicious and taste like an after dinner mint brownie.\\nThere are chocolate chunks and coconut chips in the middle. Safely portion-controlled so you can keep one in their handbag to have between meetings.",
+                      "description": "Snack Proud raw chocolate truffles are very indulgent and delicious and taste like an after-dinner mint brownie.\\nThere are chocolate chunks and coconut chips in the middle. Safely portion-controlled so you can keep one in their handbag to have between meetings.",
                       "active": true,
                       "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1610438688/Snack-Proud-Choc-Mint-Truffle.png",
-                      "price": 425,
-                      "avaliable": 10,
+                      "price": 55,
+                      "available": 5,
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": true,
+                        "nut_free": false,
+                        "dairy_free": true
+                      },
+                      "rrp": 425,
+                      "high_rrp": 590,
+                      "low_rrp": 425,
+                      "sold": 10,
+                      "request_count": 0
+                    },
+                    {
+                      "_id": "609e27337a0051125123c314",
+                      "name": "Googys, Collagen Protein Bar",
+                      "variant": "Mixed Berry",
+                      "description": "Enjoy the new Googys Collagen Bar, with low in carbohydrates, high in protein & good fats",
+                      "active": true,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1611653365/googys-collagen-bar-mixed-berry_h2jcml.png",
+                      "price": 375,
+                      "available": 9,
                       "nutrition_information": {
                         "gluten_free": true,
                         "vegan": false,
-                        "nut_free": true,
+                        "nut_free": false,
                         "dairy_free": true
                       },
-                      "rrp": 4.25,
-                      "low_rrp": 4.25,
-                      "high_rrp": 5.9,
-                      "sold": 0,
+                      "rrp": 375,
+                      "high_rrp": 500,
+                      "low_rrp": 325,
+                      "sold": 5,
                       "request_count": 0
                     }
                   ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
                 }
               }
             }
@@ -1090,35 +1927,86 @@
               "schema": {
                 "$ref": "#/components/schemas/body_5"
               },
-              "example": {
-                "updates": [
-                  {
-                    "_id": "6057f3af7f00fc0015d8a59c",
-                    "available": 11,
-                    "price": 655,
-                    "active": false
+              "examples": {
+                "single update": {
+                  "summary": "Single update",
+                  "value": {
+                    "updates": [
+                      {
+                        "_id": "609e27337a0051125123c313",
+                        "available": 11,
+                        "active": false,
+                        "price": 655
+                      }
+                    ]
                   }
-                ]
+                },
+                "Many updates": {
+                  "summary": "Many updates",
+                  "value": {
+                    "updates": [
+                      {
+                        "_id": "609e27337a0051125123c313",
+                        "available": 11,
+                        "active": false,
+                        "price": 655
+                      },
+                      {
+                        "_id": "609e27337a0051125123c314",
+                        "available": 5,
+                        "active": true,
+                        "price": 300
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "A list of errors if any. If list is empty all completed sucessfully.",
+            "description": "All products updated successfully."
+          },
+          "206": {
+            "description": "Some or all products failed to update.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/inline_response_200_7"
+                    "$ref": "#/components/schemas/error"
                   }
                 },
-                "example": [
-                  {
-                    "message": "User is not autherized to access resource"
+                "examples": {
+                  "All failed": {
+                    "summary": "All updates failed",
+                    "description": "All errors are in the order of the array given",
+                    "value": [
+                      {
+                        "success": false,
+                        "message": "Unable to find product"
+                      },
+                      {
+                        "success": false,
+                        "message": "Unable to find product"
+                      }
+                    ]
+                  },
+                  "Some failed": {
+                    "summary": "Some updates failed",
+                    "description": "All items are in the order of the array given",
+                    "value": [
+                      {
+                        "success": false,
+                        "message": "Unable to find product"
+                      },
+                      {
+                        "success": true
+                      }
+                    ]
                   }
-                ]
+                }
               }
             }
           }
@@ -1146,7 +2034,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e27337a0051125123c313"
             }
           },
           {
@@ -1164,6 +2053,19 @@
         "responses": {
           "200": {
             "description": "The product's active state was successfuly set"
+          },
+          "404": {
+            "description": "Product does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Unable to find product"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1189,7 +2091,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
@@ -1200,6 +2103,89 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/products_to_buy_seller"
+                },
+                "example": {
+                  "products": [
+                    {
+                      "_id": "603635cec3e97ce640cd87bd",
+                      "name": "50 pack of Choc Not Choc, Mint Brownie ball",
+                      "description": "50 Delicious Choc Not Choc, Mint Brownie ball ",
+                      "price": 3023,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614572173/50-pack-of-Choc-Not-Choc-Mint-Brownie-ball.jpg",
+                      "preset_products": [
+                        {
+                          "_id": "5ffd0b5cf5cba2652ab27195",
+                          "quantity": 50
+                        }
+                      ],
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": true,
+                        "nut_free": false,
+                        "dairy_free": true
+                      },
+                      "variant": "chocolate",
+                      "total_quantity": 50,
+                      "on_hand": 5
+                    },
+                    {
+                      "_id": "603637cbd9ea062581df00b2",
+                      "name": "Googys, Collagen Protein Bar, Mixed Berry",
+                      "description": "20 Googys, Collagen Protein Bar to satisfy your taste buds",
+                      "price": 2912,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614572060/Googys-Collagen-Protein-Bar-Mixed-Berry.jpg",
+                      "preset_products": [
+                        {
+                          "_id": "603634ead9ea062581df00b1",
+                          "quantity": 20
+                        }
+                      ],
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": false,
+                        "nut_free": false,
+                        "dairy_free": true
+                      },
+                      "variant": "Mixed Berry",
+                      "total_quantity": 20,
+                      "on_hand": 9
+                    },
+                    {
+                      "_id": "609e2c1fc149f8772db5b45d",
+                      "name": "Test product 1",
+                      "description": "This is a test product",
+                      "price": 1050,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1620977988/sample%20products/TestProduct1.png",
+                      "preset_products": [
+                        {
+                          "_id": "609e2b02c149f8772db5b459",
+                          "quantity": 20
+                        }
+                      ],
+                      "nutrition_information": {
+                        "gluten_free": true,
+                        "vegan": false,
+                        "nut_free": false,
+                        "dairy_free": true
+                      },
+                      "variant": "variant 1",
+                      "total_quantity": 20,
+                      "on_hand": 10
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
                 }
               }
             }
@@ -1228,7 +2214,8 @@
             "style": "simple",
             "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "609e23c3c149f8772db5b456"
             }
           }
         ],
@@ -1239,6 +2226,63 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/monthly_refill_to_buy_seller"
+                },
+                "example": {
+                  "products": [
+                    {
+                      "_id": "608e1eebc149f8772db5b455",
+                      "name": "80 piece",
+                      "description": "A collection of delicious snacks for your monthly refill",
+                      "price": 18900,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614571845/monthly-refill-box.png",
+                      "preset_products": [
+                        {
+                          "_id": "603634ead9ea062581df00b1",
+                          "quantity": 20
+                        },
+                        {
+                          "_id": "6036334fd9ea062581df00b0",
+                          "quantity": 10
+                        }
+                      ],
+                      "type": "Monthly refill",
+                      "total_quantity": 30,
+                      "on_hand": 19
+                    },
+                    {
+                      "_id": "603b2f5ad9ea062581df00b5",
+                      "name": "50 piece",
+                      "description": "A collection of delicious snacks for your monthly refill",
+                      "price": 12500,
+                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614571845/monthly-refill-box.png",
+                      "preset_products": [
+                        {
+                          "_id": "603634ead9ea062581df00b1",
+                          "quantity": 20
+                        },
+                        {
+                          "_id": "6036334fd9ea062581df00b0",
+                          "quantity": 10
+                        }
+                      ],
+                      "type": "Monthly refill",
+                      "total_quantity": 30,
+                      "on_hand": 19
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Box not found"
                 }
               }
             }
@@ -1269,12 +2313,16 @@
                   "box_id": "609e23c3c149f8772db5b456",
                   "cart": [
                     {
-                      "_id": "603635cec3e97ce640cd87bd",
+                      "_id": "608e1eebc149f8772db5b455",
                       "quantity": 1
+                    },
+                    {
+                      "_id": "609e2c1fc149f8772db5b45d",
+                      "quantity": 4
                     }
                   ],
                   "order_details": {
-                    "name": "jimmy",
+                    "name": "Jimmy Johnson",
                     "address": {
                       "address_line1": "address_line1",
                       "address_line2": "address_line2",
@@ -1317,7 +2365,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_8"
+                  "$ref": "#/components/schemas/inline_response_200_7"
                 }
               }
             }
@@ -1363,6 +2411,19 @@
         "responses": {
           "200": {
             "description": "The order was successfully processed"
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "example": {
+                  "message": "Unable to find box/s"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1384,6 +2445,27 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/body_7"
+              },
+              "examples": {
+                "Change passoword": {
+                  "summary": "Change password",
+                  "value": {
+                    "password": "Password@123"
+                  }
+                },
+                "Change email": {
+                  "summary": "Change email",
+                  "value": {
+                    "email": "newEmail@hotmail.com"
+                  }
+                },
+                "Change both password and email": {
+                  "summary": "Change email and password",
+                  "value": {
+                    "email": "newEmail@hotmail.com",
+                    "password": "Password@123"
+                  }
+                }
               }
             }
           }
@@ -1397,7 +2479,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_400"
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "Email already in use": {
+                    "summary": "Email already in use",
+                    "value": {
+                      "message": "The specified new email already exists"
+                    }
+                  },
+                  "Invalid email": {
+                    "summary": "Invalid email",
+                    "value": {
+                      "message": "Payload validation error: 'Object didn't pass validation for format email: 1 on property email (Email address of this user)."
+                    }
+                  },
+                  "Password too weak": {
+                    "summary": "Password too weak",
+                    "value": {
+                      "message": "PasswordStrengthError: Password is too weak"
+                    }
+                  }
                 }
               }
             }
@@ -1423,7 +2525,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_9"
+                  "$ref": "#/components/schemas/inline_response_200_8"
                 },
                 "example": {
                   "box_carts": [
@@ -1436,7 +2538,7 @@
                           "price": 2912,
                           "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614572060/Googys-Collagen-Protein-Bar-Mixed-Berry.jpg",
                           "pack_size": 20,
-                          "quantity": 11,
+                          "quantity": 12,
                           "variant": "Mixed Berry",
                           "nutrition_information": {
                             "gluten_free": true,
@@ -1452,7 +2554,7 @@
                       }
                     }
                   ],
-                  "cart_total": 32032
+                  "cart_total": 34944
                 }
               }
             }
@@ -1477,8 +2579,8 @@
                 "$ref": "#/components/schemas/body_8"
               },
               "example": {
-                "product_id": "603637cbd9ea062581df00b2",
-                "box_id": "609e23c3c149f8772db5b456"
+                "product_id": "609e2c1fc149f8772db5b45d",
+                "box_id": "609e23f7c149f8772db5b458"
               }
             }
           }
@@ -1489,7 +2591,31 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_10"
+                  "$ref": "#/components/schemas/inline_response_200_9"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Could not find something exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "Product does not exist": {
+                    "summary": "Product does not exist",
+                    "value": {
+                      "message": "Product not found"
+                    }
+                  },
+                  "Box does not exist": {
+                    "summary": "Box does not exist",
+                    "value": {
+                      "message": "Box not found"
+                    }
+                  }
                 }
               }
             }
@@ -1515,7 +2641,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_10"
+                  "$ref": "#/components/schemas/inline_response_200_9"
                 },
                 "example": {
                   "cart_size": 1
@@ -1549,7 +2675,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "609e23c3c149f8772db5b456"
+            "example": "609e23f7c149f8772db5b458"
           }
         ],
         "responses": {
@@ -1558,28 +2684,53 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_11"
+                  "$ref": "#/components/schemas/inline_response_200_10"
+                },
+                "examples": {
+                  "empty cart": {
+                    "summary": "Empty cart",
+                    "value": {
+                      "box_cart": [],
+                      "cart_total": 0
+                    }
+                  },
+                  "cart with single item": {
+                    "summary": "Cart with an item in it",
+                    "value": {
+                      "box_cart": [
+                        {
+                          "_id": "603637cbd9ea062581df00b2",
+                          "name": "Googys, Collagen Protein Bar, Mixed Berry",
+                          "description": "20 Googys, Collagen Protein Bar to satisfy your taste buds",
+                          "price": 2912,
+                          "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614572060/Googys-Collagen-Protein-Bar-Mixed-Berry.jpg",
+                          "pack_size": 20,
+                          "quantity": 11,
+                          "variant": "Mixed Berry",
+                          "nutrition_information": {
+                            "gluten_free": true,
+                            "vegan": false,
+                            "nut_free": false,
+                            "dairy_free": true
+                          }
+                        }
+                      ],
+                      "cart_total": 32032
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
                 },
                 "example": {
-                  "box_cart": [
-                    {
-                      "_id": "603637cbd9ea062581df00b2",
-                      "name": "Googys, Collagen Protein Bar, Mixed Berry",
-                      "description": "20 Googys, Collagen Protein Bar to satisfy your taste buds",
-                      "price": 2912,
-                      "image_url": "https://res.cloudinary.com/snackproud/image/upload/v1614572060/Googys-Collagen-Protein-Bar-Mixed-Berry.jpg",
-                      "pack_size": 20,
-                      "quantity": 11,
-                      "variant": "Mixed Berry",
-                      "nutrition_information": {
-                        "gluten_free": true,
-                        "vegan": false,
-                        "nut_free": false,
-                        "dairy_free": true
-                      }
-                    }
-                  ],
-                  "cart_total": 32032
+                  "message": "Box not found"
                 }
               }
             }
@@ -1608,7 +2759,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "609e23c3c149f8772db5b456"
+            "example": "609e23f7c149f8772db5b458"
           }
         ],
         "requestBody": {
@@ -1630,10 +2781,34 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_10"
+                  "$ref": "#/components/schemas/inline_response_200_9"
                 },
                 "example": {
                   "cart_size": 1
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Could not find something exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "Product does not exist": {
+                    "summary": "Product does not exist",
+                    "value": {
+                      "message": "Product not found"
+                    }
+                  },
+                  "Box does not exist": {
+                    "summary": "Box does not exist",
+                    "value": {
+                      "message": "Box not found"
+                    }
+                  }
                 }
               }
             }
@@ -1649,6 +2824,33 @@
   },
   "components": {
     "schemas": {
+      "error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A human readable description of what went wrong"
+          },
+          "feilds": {
+            "type": "array",
+            "description": "A list of feild that where incorrectly inputted (Only included if applicable)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reasons": {
+            "type": "array",
+            "description": "Reason why each feild was rejected (Only included if feild exists)",
+            "items": {
+              "$ref": "#/components/schemas/error_reasons"
+            }
+          },
+          "success": {
+            "type": "boolean",
+            "description": "A boolean to identify weather an operation was complete or not (Only included if applicable)"
+          }
+        }
+      },
       "user_address": {
         "type": "object",
         "properties": {
@@ -2375,15 +3577,6 @@
           }
         }
       },
-      "inline_response_206": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "A message of what went wrong."
-          }
-        }
-      },
       "body_2": {
         "type": "object",
         "properties": {
@@ -2478,17 +3671,16 @@
           {
             "example": {
               "address": {
-                "address_line1": "11 Test_address",
-                "address_line2": "20",
-                "country": "Australia",
-                "city": "Sydney",
+                "address_line1": "address_full_match",
+                "country": "AU",
+                "city": "Waterloo",
                 "state": "NSW",
-                "zip": "2222"
+                "zip": "2017"
               },
-              "instructions": "Some special instructions",
-              "name": "my contact name here",
-              "phone": "123456789",
-              "email": "example@example.com"
+              "instructions": "Some instructions",
+              "name": "Jim john",
+              "phone": "0000000000",
+              "email": "e@e.com"
             }
           }
         ]
@@ -2648,19 +3840,10 @@
       "inline_response_200_7": {
         "type": "object",
         "properties": {
-          "message": {
-            "type": "string",
-            "description": "Reason for the error"
-          }
-        }
-      },
-      "inline_response_200_8": {
-        "type": "object",
-        "properties": {
           "boxes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/inline_response_200_8_boxes"
+              "$ref": "#/components/schemas/inline_response_200_7_boxes"
             }
           }
         },
@@ -2727,21 +3910,13 @@
           }
         }
       },
-      "inline_response_400": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/inline_response_400_error"
-          }
-        }
-      },
-      "inline_response_200_9": {
+      "inline_response_200_8": {
         "type": "object",
         "properties": {
           "box_carts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/inline_response_200_9_box_carts"
+              "$ref": "#/components/schemas/inline_response_200_8_box_carts"
             }
           },
           "cart_total": {
@@ -2767,7 +3942,7 @@
           }
         }
       },
-      "inline_response_200_10": {
+      "inline_response_200_9": {
         "type": "object",
         "properties": {
           "cart_size": {
@@ -2776,13 +3951,13 @@
           }
         }
       },
-      "inline_response_200_11": {
+      "inline_response_200_10": {
         "type": "object",
         "properties": {
           "box_cart": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/inline_response_200_9_cart"
+              "$ref": "#/components/schemas/inline_response_200_8_cart"
             }
           },
           "cart_total": {
@@ -2805,6 +3980,23 @@
           "quantity": {
             "type": "integer",
             "description": "number of the product to buy"
+          }
+        }
+      },
+      "error_reasons": {
+        "type": "object",
+        "properties": {
+          "feild": {
+            "type": "string",
+            "description": "Feild this message pertains to"
+          },
+          "message": {
+            "type": "string",
+            "description": "What was wrong with the given feild"
+          },
+          "input_given": {
+            "type": "string",
+            "description": "The input the system recieved."
           }
         }
       },
@@ -3138,7 +4330,7 @@
           }
         }
       },
-      "inline_response_200_8_boxes": {
+      "inline_response_200_7_boxes": {
         "type": "object",
         "properties": {
           "_id": {
@@ -3167,16 +4359,7 @@
           }
         }
       },
-      "inline_response_400_error": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Message with why request was rejected"
-          }
-        }
-      },
-      "inline_response_200_9_cart": {
+      "inline_response_200_8_cart": {
         "type": "object",
         "properties": {
           "_id": {
@@ -3216,7 +4399,7 @@
           }
         }
       },
-      "inline_response_200_9_box_info": {
+      "inline_response_200_8_box_info": {
         "type": "object",
         "properties": {
           "_id": {
@@ -3229,17 +4412,17 @@
           }
         }
       },
-      "inline_response_200_9_box_carts": {
+      "inline_response_200_8_box_carts": {
         "type": "object",
         "properties": {
           "cart": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/inline_response_200_9_cart"
+              "$ref": "#/components/schemas/inline_response_200_8_cart"
             }
           },
           "box_info": {
-            "$ref": "#/components/schemas/inline_response_200_9_box_info"
+            "$ref": "#/components/schemas/inline_response_200_8_box_info"
           }
         }
       }
