@@ -276,9 +276,9 @@
           "3 - Seller - Registration"
         ],
         "summary": "3.2 - Set up account",
-        "description": "Create a stripe account for a individual with the details given",
+        "description": "Create a account for a individual with the details given",
         "requestBody": {
-          "description": "Data to create Stripe account with.",
+          "description": "Data to create account with.",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -1005,6 +1005,7 @@
             "explode": true,
             "schema": {
               "type": "string",
+              "default": "week",
               "enum": [
                 "year",
                 "month",
@@ -1055,6 +1056,7 @@
             "explode": true,
             "schema": {
               "type": "string",
+              "default": "week",
               "enum": [
                 "year",
                 "month",
@@ -1179,6 +1181,7 @@
             "explode": true,
             "schema": {
               "type": "string",
+              "default": "week",
               "enum": [
                 "year",
                 "month",
@@ -1648,6 +1651,7 @@
             "explode": true,
             "schema": {
               "type": "string",
+              "default": "week",
               "enum": [
                 "year",
                 "month",
@@ -1819,6 +1823,7 @@
             "explode": true,
             "schema": {
               "type": "string",
+              "default": "week",
               "enum": [
                 "year",
                 "month",
